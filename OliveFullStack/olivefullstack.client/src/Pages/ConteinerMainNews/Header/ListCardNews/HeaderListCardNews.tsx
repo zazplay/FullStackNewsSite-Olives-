@@ -15,13 +15,13 @@ interface HeaderListCardNewsProps {
     arrayNews: News[]
 }
 
-//контеинер с 3 карточками с права от большой на главной странице
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 3 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 const HeaderListCardNews: FC<HeaderListCardNewsProps> = ({start=0, n, arrayNews }) => {
-    const newArr = arrayNews.slice(start, n);//получаем первые n елементов
+    const newArr = arrayNews.slice(start, n);//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ n пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     const items: React.ReactNode[] = newArr.map((item) =>
         item &&
-        <CardNews key={item.id} obj={item} listObj={arrayNews} />);//если елемент существует мапим его в карточку
+        <CardNews key={item.id} obj={item} listObj={arrayNews} />);//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     return <div className={styles.ListCardNews} >{items}</div>;
 };

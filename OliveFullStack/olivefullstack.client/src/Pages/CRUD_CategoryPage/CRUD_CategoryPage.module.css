@@ -1,0 +1,11 @@
+.CRUD_CategoryPage {
+    height:360px;
+    margin-top:1em;
+    margin-bottom:1em;
+   
+}
+
+.Functionality {
+    display:grid;
+    grid-template-columns:6fr 2fr 2fr 2fr 8fr;
+}

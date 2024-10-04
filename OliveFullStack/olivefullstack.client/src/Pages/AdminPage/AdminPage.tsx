@@ -61,16 +61,15 @@ const AdminPage: FC = () => {
     //функция видалення новин
 
     // (Витя добавил удаление потому что мне стало скучно :D )
-    
 
     const handleClick = async () => {
         if (listNewsIdOnDelete === null || listNewsIdOnDelete.length === 0) return;
         console.log("Delete button");
         console.log('listNewsIdOnDelete', listNewsIdOnDelete);
-        
+
         const token = localStorage.getItem('token');
         console.log("handleLoad");
-    
+
         try {
             const response = await axios.delete("https://localhost:7142/PresentationNews/deleteByIds", {
                 headers: {
@@ -80,11 +79,11 @@ const AdminPage: FC = () => {
                 },
                 data: { ids: listNewsIdOnDelete }
             });
-            
+
             console.log("Response:", response);
             setReload(!reload);
             window.location.reload();
-             // перезагрузка списка новин
+            // перезагрузка списка новин
         } catch (e) {
             console.error("Error deleting news:", e);
             if (axios.isAxiosError(e)) {
@@ -95,29 +94,31 @@ const AdminPage: FC = () => {
     }
 
     return (
-        <div className="width-main-container">
-            <div className={styles.AdminTitle} >Admin <span style={{ color: "skyblue" }} >panel</span> </div>
-            <div className={styles.ConteinerCRUDOperation} >
-                <div><InputGroup className="mb-3 w-75">
-                    <Form.Control
-                        placeholder="Search"
-                        aria-label="Recipient's username"
-                        aria-describedby="basic-addon2"
-                    />
-                    <Button variant="outline-secondary" id="button-addon2">
-                        Button
-                    </Button>
-                </InputGroup>
+        
+            <div className="width-main-container">
+                <div className={styles.AdminTitle} >Admin <span style={{ color: "skyblue" }} >panel</span> </div>
+                <div className={styles.ConteinerCRUDOperation} >
+                    <div><InputGroup className="mb-3 w-75">
+                        <Form.Control
+                            placeholder="Search"
+                            aria-label="Recipient's username"
+                            aria-describedby="basic-addon2"
+                        />
+                        <Button variant="primary" id="button-addon2">
+                            Enter
+                        </Button>
+                    </InputGroup>
+                    </div>
+                    <a href={"category"} className={styles.Publish} >Categroy</a>
+                    <a href={"add_news"} className={styles.Publish} >+ Publish</a>
+                    <button className={styles.BtnDeleteStyle} onClick={handleClick} >Delete</button>
+                    <div className={styles.Publish}>Sorting</div>
+                    <div className={styles.Publish}>Filter</div>
                 </div>
-                <a href={"add_news"} className={styles.Publish} >+ Publish</a>
-                <button className={styles.BtnDeleteStyle} onClick={handleClick} >Delete</button>
-                <div className={styles.Publish}>Sorting</div>
-                <div className={styles.Publish}>Filter</div>
+                <ListNewsForAdmin listObj={listNews} listOnDelete={listNewsIdOnDelete} setListOnDelete={setListNewsIdOnDelete} />
 
             </div>
-            <ListNewsForAdmin listObj={listNews} listOnDelete={listNewsIdOnDelete} setListOnDelete={setListNewsIdOnDelete} />
-
-        </div>
+          
     );
 }
 

@@ -28,6 +28,8 @@ namespace Notes.BusinessLogicLayer.Services
                 .News
                 .GetAll();
 
+            
+
             var newsDto = _mapper.Map<List<NewsDTO>>(news);
 
             return newsDto;

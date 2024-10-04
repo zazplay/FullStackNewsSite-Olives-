@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ovile_BLL_Layer.Services;
 
 namespace OliveFullStack.PresentationLayer.Controllers
 {
@@ -39,6 +40,7 @@ namespace OliveFullStack.PresentationLayer.Controllers
         {
             var news = await _newsService.GetAllNews();
             var newsResponses = _mapper.Map<List<NewsResponse>>(news);
+            
             return Ok(newsResponses);
         }
 

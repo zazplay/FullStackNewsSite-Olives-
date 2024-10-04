@@ -26,7 +26,7 @@ const Header: FC<ArrayNews> = ({ array }) => {
         <>
             <h1 className={styles.h1} >Today in the <span className={styles.news} >news</span></h1>
             <Container className={styles.container} >
-                <MainCardHeader topNews={array[array.length-2]} listObj={array} />
+                <MainCardHeader topNews={array[array.length-1]} listObj={array} />
                 <Container>
                     <HeaderListCardNews n={3} arrayNews={array } />
                 </Container>
