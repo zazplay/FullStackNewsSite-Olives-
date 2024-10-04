@@ -1,0 +1,27 @@
+.LoginForm {
+}
+
+.Label {
+    font-size: large;
+    font-weight:bold;
+}
+.Form {
+    margin-top:2em;
+    margin-bottom:2em;
+    width: 30rem;
+    text-align: left;
+
+}
+
+.ComteinerSubmitRegistraion {
+    display: grid;
+    grid-template-columns:1fr 1fr;
+}
+
+.LinkRegistr {
+    color: blue;
+    text-decoration: underline;
+    text-align: right;
+    margin-top: -30px;
+}
+

@@ -1,0 +1,16 @@
+.ConteinerMainNews {
+    width:1000px;
+    margin:0 auto;
+    margin-top: 10px;
+}
+
+.BodyNews{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+.hr{
+    margin-top:2em;
+    opacity:0.5;
+    border:2px solid grey;
+
+}

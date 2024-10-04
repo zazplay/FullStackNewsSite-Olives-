@@ -1,0 +1,6 @@
+@OliveFullStack.Server_HostAddress = http://localhost:5022
+
+GET {{OliveFullStack.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
