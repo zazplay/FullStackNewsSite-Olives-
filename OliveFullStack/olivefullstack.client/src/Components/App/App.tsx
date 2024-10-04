@@ -8,6 +8,7 @@ import LoginForm from '../../Pages/LoginForm/LoginForm';
 import AddNewsForm from '../../Pages/AddNewsForm/AddNewsForm';
 import PageCurentNews from '../../Pages/PageCurentNews/PageCurentNews';
 import ConteinerMainNews from '../../Pages/ConteinerMainNews/ConteinerMainNews';
+import CRUD_CategoryPage from '../../Pages/CRUD_CategoryPage/CRUD_CategoryPage';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/login" element={<LoginForm />} />
                     <Route path="/add_news" element={<AddNewsForm />} />
                     <Route path="/news" element={<PageCurentNews />} />
+                    <Route path="category" element={<CRUD_CategoryPage />} />
                 </Routes>
                 <Footer />
             </Router>

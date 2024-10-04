@@ -9,7 +9,8 @@ public class AutoMaperProfiles : Profile
 {
     public AutoMaperProfiles()
     {
-        CreateMap<News, NewsDTO>().ReverseMap();
+        CreateMap<News, NewsDTO>().ReverseMap().
+            ForPath(dest => dest.Category, opt => opt.MapFrom(src => src.CategoryName));
 
         CreateMap<Category, CategoryDTO>().ReverseMap();
 

@@ -8,6 +8,7 @@ const AddNewsForm: FC = () => {
     const [desc, setDesc] = useState('');
     const [imgRef, setImgRef] = useState('');
     const [source, setSource] = useState('');
+    const [selectedOption, setSelectedOption] = useState<string>('');
 
     const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -26,6 +27,11 @@ const AddNewsForm: FC = () => {
         event.preventDefault();
 
         const token = localStorage.getItem('token');
+
+        if (!title || !desc || !imgRef || !source) {
+            console.log("title", title);
+            return;
+        }
 
         const newNewsPayLoad = { Title: title, Description: desc, ImgSrc: imgRef, Source: source }
 
@@ -53,6 +59,13 @@ const AddNewsForm: FC = () => {
 
 
     }
+
+
+    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        console.log(selectedOption);
+        setTimeout(() => setSelectedOption(event.target.value),500);
+        console.log(selectedOption);
+    };
 
     return (
         <div className="width-main-container">
@@ -93,6 +106,17 @@ const AddNewsForm: FC = () => {
                         onChange={handleSource}
                     />
                 </Form.Group>
+                <Form.Select
+                    aria-label="Default select example"
+                    size="sm"
+                    className="w-50 mb-3"
+                    onChange={handleSelectChange}
+                >
+                    <option>Select a category</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </Form.Select>
                 <Button variant="primary" type="submit">Add </Button>
             </Form>
         </div>

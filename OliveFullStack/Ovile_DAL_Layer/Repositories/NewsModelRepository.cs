@@ -23,7 +23,9 @@ namespace Ovile_DAL_Layer.Repositories
         /// <returns></returns>
         public async Task<IEnumerable<News>> GetAll()
         {
-            return await _context.News.ToListAsync();
+            return await _context.News
+                .Include(n => n.Category) 
+                .ToListAsync();
         }
 
 
