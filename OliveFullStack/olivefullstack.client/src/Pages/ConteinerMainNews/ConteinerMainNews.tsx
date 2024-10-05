@@ -45,10 +45,10 @@ const ConteinerMainNews: FC = () => {
         handleLoad();
     }, []);
 
-    const filteredNews = selectedCategoryId
-        ? listNews.filter(news => news.categoryId === selectedCategoryId) 
-        : listNews;
-
+    const filteredNews = (selectedCategoryId
+        ? listNews.filter(news => news.categoryId === selectedCategoryId)
+        : listNews).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+       
     return (
         <div className="width-main-container">
             <div className={styles.ContainerCategorySelector}>

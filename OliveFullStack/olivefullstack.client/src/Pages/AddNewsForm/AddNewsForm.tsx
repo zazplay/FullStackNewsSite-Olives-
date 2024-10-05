@@ -1,14 +1,21 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import styles from "../LoginForm/LoginForm.module.css"
 import axios from 'axios';
 
+interface Category {
+    id: string,
+    name: string
+}
+
+//Added News
 const AddNewsForm: FC = () => {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState('');
     const [imgRef, setImgRef] = useState('');
     const [source, setSource] = useState('');
-    const [selectedOption, setSelectedOption] = useState<string>('');
+    const [currentSelected, setCurrentSelected] = useState<string>('');//Current category
+    const [listCategories, setListCategories] = useState<Category[]>([]);//list of categories with API
 
     const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -23,6 +30,7 @@ const AddNewsForm: FC = () => {
         setSource(event.target.value);
     }
 
+    //Sending the created news to the API
     const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -33,10 +41,10 @@ const AddNewsForm: FC = () => {
             return;
         }
 
-        const newNewsPayLoad = { Title: title, Description: desc, ImgSrc: imgRef, Source: source }
+        const newNewsPayLoad = { Title: title, Description: desc, ImgSrc: imgRef, Source: source, Category: currentSelected }
 
         try {
-
+            console.log(newNewsPayLoad);
             const response = axios.post("https://localhost:7142/PresentationNews", newNewsPayLoad, {
                 headers: {
                     'Authorization': `Bearer ${token}` // Добавляем токен в заголовок
@@ -46,26 +54,43 @@ const AddNewsForm: FC = () => {
             }).catch((e) => console.log(e));
 
             console.log("response", response);
-            // Перезагружаем компонент
-            //setTimeout(onAddNote, 1000);
-            //console.log("setTimeout(onAddNote, 1000);");
-
         }
         catch (err) {
             console.log(err);
         }
-
-
-
-
     }
 
-
+    //Receiving the selected category and recording it in the currentSelected
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        console.log(selectedOption);
-        setTimeout(() => setSelectedOption(event.target.value),500);
-        console.log(selectedOption);
+        setCurrentSelected(event.target.value);
     };
+
+    useEffect(() => {
+        console.log("UseEffect", currentSelected);
+    }, [currentSelected])
+
+    // Getting categories
+    useEffect(() => {
+        const handleLoad = async () => {
+            console.log("SelectCategorys");
+            
+            try {
+                const response = await axios.get("https://localhost:7142/PresentationCategory");
+               
+                console.log("response", response.data);
+
+                if (response && response.data) {
+                    setListCategories(response.data);
+                    setCurrentSelected(response.data[0].id);
+                }
+
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        handleLoad();
+    }, [])
 
     return (
         <div className="width-main-container">
@@ -112,10 +137,11 @@ const AddNewsForm: FC = () => {
                     className="w-50 mb-3"
                     onChange={handleSelectChange}
                 >
-                    <option>Select a category</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    ( {listCategories.map(category => (
+                        <option key={category.id} value={category.id}>
+                            {category.name}
+                        </option>
+                    ))})
                 </Form.Select>
                 <Button variant="primary" type="submit">Add </Button>
             </Form>

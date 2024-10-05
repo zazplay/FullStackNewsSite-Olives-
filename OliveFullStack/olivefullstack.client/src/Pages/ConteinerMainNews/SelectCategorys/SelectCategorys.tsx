@@ -20,15 +20,16 @@ const SelectCategorys: FC<SelectCategorysProps> = ({ onCategoryChange }) => {
     useEffect(() => {
 
         const handleLoad = async () => {
-            const token = localStorage.getItem('token');
-            console.log("handleLoad");
+            //const token = localStorage.getItem('token');
+            console.log("SelectCategorys");
 
             try {
-                const response = await axios.get("https://localhost:7142/PresentationCategory", {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+                const response = await axios.get("https://localhost:7142/PresentationCategory");
+    //            , {
+    //            headers: {
+    //                'Authorization': `Bearer ${token}`
+    //}
+    //            }
 
                 console.log("response", response.data);
 

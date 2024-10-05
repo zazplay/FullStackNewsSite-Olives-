@@ -5,12 +5,6 @@ using Ovile_BLL_Layer.Interfaces;
 using OliveFullStack.PresentationLayer.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
 using OliveFullStack.PresentationLayer.Models.Requests.NewsRequests;
-using OliveFullStack.PresentationLayer.Models.Requests.CategoryRequests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ovile_BLL_Layer.Services;
 
 namespace OliveFullStack.PresentationLayer.Controllers
 {
@@ -28,8 +22,6 @@ namespace OliveFullStack.PresentationLayer.Controllers
             _categoryService = categoryService;
             _mapper = mapper;
         }
-
-       
 
         /// <summary>
         /// Получить все новости (доступ для всех)
