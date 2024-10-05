@@ -12,8 +12,8 @@ using Ovile_DAL_Layer.EF;
 namespace OliveFullStack.PresentationLayer.Migrations
 {
     [DbContext(typeof(NewsContext))]
-    [Migration("20241002142505_CategoryMigration")]
-    partial class CategoryMigration
+    [Migration("20241005055803_InitMigrationDmitriyBranch")]
+    partial class InitMigrationDmitriyBranch
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OliveFullStack.PresentationLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class CategoryMigration : Migration
+    public partial class InitMigrationDmitriyBranch : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -14,7 +14,7 @@ interface SelectCategorysProps {
 const SelectCategorys: FC<SelectCategorysProps> = ({ onCategoryChange }) => {
 
     const [listCategories, setListCategories] = useState<Category[]>([]);
-    const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
+    //const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
 
 
     useEffect(() => {
