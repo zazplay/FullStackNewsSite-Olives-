@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/esm/Button';
 import "../../Components/App/App.css"
 import ListNewsForAdmin from './ListNewsForAdmin/ListNewsForAdmin';
 import axios from 'axios';
-
 interface News {
     id: string;
     title: string;
@@ -20,6 +19,7 @@ const AdminPage: FC = () => {
     const [listNewsIdOnDelete, setListNewsIdOnDelete] = useState<string[]>([]);
     const [listNews, setListNews] = useState<News[]>([]);
     const [reload, setReload] = useState<boolean>(false);
+    const [myFlag] = useState((localStorage.getItem('token')));
 
     //отримання всих новин
     useEffect(() => {
@@ -93,8 +93,7 @@ const AdminPage: FC = () => {
         }
     }
 
-    return (
-        
+    return (myFlag &&
             <div className="width-main-container">
                 <div className={styles.AdminTitle} >Admin <span style={{ color: "skyblue" }} >panel</span> </div>
                 <div className={styles.ConteinerCRUDOperation} >
