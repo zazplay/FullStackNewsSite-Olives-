@@ -14,29 +14,19 @@ interface SelectCategorysProps {
 const SelectCategorys: FC<SelectCategorysProps> = ({ onCategoryChange }) => {
 
     const [listCategories, setListCategories] = useState<Category[]>([]);
-    //const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
-
 
     useEffect(() => {
-
         const handleLoad = async () => {
-            //const token = localStorage.getItem('token');
             console.log("SelectCategorys");
 
             try {
                 const response = await axios.get("https://localhost:7142/PresentationCategory");
-    //            , {
-    //            headers: {
-    //                'Authorization': `Bearer ${token}`
-    //}
-    //            }
 
                 console.log("response", response.data);
 
                 if (response && response.data) {
                     setListCategories(response.data);
                 } 
-
 
             } catch (e) {
                 console.log(e);
@@ -45,7 +35,6 @@ const SelectCategorys: FC<SelectCategorysProps> = ({ onCategoryChange }) => {
 
         handleLoad();
     }, [])
-
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedId = event.target.value;
@@ -61,7 +50,6 @@ const SelectCategorys: FC<SelectCategorysProps> = ({ onCategoryChange }) => {
                         {category.name}
                     </option>
                 ))}
-
             </Form.Select>
         </div>
     );

@@ -20,6 +20,7 @@ const ConteinerMainNews: FC = () => {
     const [listNews, setListNews] = useState<News[]>([]);
     const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
 
+    // geting list news
     useEffect(() => {
         const handleLoad = async () => {
             const token = localStorage.getItem('token');

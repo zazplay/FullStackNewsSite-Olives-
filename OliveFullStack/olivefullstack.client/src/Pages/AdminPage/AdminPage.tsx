@@ -93,6 +93,7 @@ const AdminPage: FC = () => {
         }
     }
 
+    const listNewsSorted = listNews?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     return (myFlag &&
             <div className="width-main-container">
                 <div className={styles.AdminTitle} >Admin <span style={{ color: "skyblue" }} >panel</span> </div>
@@ -113,8 +114,8 @@ const AdminPage: FC = () => {
                     <button className={styles.BtnDeleteStyle} onClick={handleClick} >Delete</button>
                     <div className={styles.Publish}>Sorting</div>
                     <div className={styles.Publish}>Filter</div>
-                </div>
-                <ListNewsForAdmin listObj={listNews} listOnDelete={listNewsIdOnDelete} setListOnDelete={setListNewsIdOnDelete} />
+            </div>
+            <ListNewsForAdmin listObj={listNewsSorted} listOnDelete={listNewsIdOnDelete} setListOnDelete={setListNewsIdOnDelete} />
 
             </div>
           

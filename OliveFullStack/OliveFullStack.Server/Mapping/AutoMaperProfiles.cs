@@ -9,8 +9,15 @@ public class AutoMaperProfiles : Profile
 {
     public AutoMaperProfiles()
     {
-        CreateMap<News, NewsDTO>().ReverseMap()
-            .ForPath(dest => dest.Category, opt => opt.MapFrom(src => src.CategoryName));
+        // Маппинг из News в NewsDTO
+        CreateMap<News, NewsDTO>()
+            .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.CategoryId))
+            .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category != null ? src.Category.Name : null));
+
+        // Маппинг из NewsDTO в News
+        CreateMap<NewsDTO, News>()
+            .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.CategoryId))
+            .ForMember(dest => dest.Category, opt => opt.Ignore()); // Category не передаётся напрямую из DTO, поэтому игнорируем
 
         CreateMap<Category, CategoryDTO>().ReverseMap();
 

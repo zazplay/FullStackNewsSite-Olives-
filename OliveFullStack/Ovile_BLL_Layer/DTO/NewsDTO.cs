@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Ovile_BLL_Layer.DTO
 {
     public class NewsDTO

@@ -14,25 +14,40 @@ const AddNewsForm: FC = () => {
     const [desc, setDesc] = useState('');
     const [imgRef, setImgRef] = useState('');
     const [source, setSource] = useState('');
-    const [currentSelected, setCurrentSelected] = useState<string>('');//Current category
+    const [currentSelectedCategory, setCurrentSelectedCategory] = useState<string>('');//Current category
     const [listCategories, setListCategories] = useState<Category[]>([]);//list of categories with API
+    const [status, setStatus] = useState<string | null>(null);
 
     const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (status) setStatus(null);
         setTitle(event.target.value);
     }
     const handleDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (status) setStatus(null);
         setDesc(event.target.value);
     }
     const handleImg = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (status) setStatus(null);
         setImgRef(event.target.value);
     }
     const handleSource = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (status) setStatus(null);
         setSource(event.target.value);
     }
 
+    //clears the input fields in the form
+    const cleareInput = () => {
+        setStatus("News successfully added.");
+        setTitle('');
+        setDesc('');
+        setImgRef('');
+        setSource('');
+    }
+
     //Sending the created news to the API
-    const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        if (status) setStatus(null);
 
         const token = localStorage.getItem('token');
 
@@ -41,33 +56,39 @@ const AddNewsForm: FC = () => {
             return;
         }
 
-        const newNewsPayLoad = { Title: title, Description: desc, ImgSrc: imgRef, Source: source, Category: currentSelected }
+        const newNewsPayLoad = { Title: title, Description: desc, ImgSrc: imgRef, Source: source, Category: currentSelectedCategory }
 
         try {
             console.log(newNewsPayLoad);
-            const response = axios.post("https://localhost:7142/PresentationNews", newNewsPayLoad, {
+            const response = await axios.post("https://localhost:7142/PresentationNews", newNewsPayLoad, {
                 headers: {
                     'Authorization': `Bearer ${token}` // Добавляем токен в заголовок
                 }
             }).then((resp) => {
                 console.log(resp);
-            }).catch((e) => console.log(e));
+            }).catch((e) => {
+                console.log(e);
+            });
 
             console.log("response", response);
         }
         catch (err) {
             console.log(err);
+            return;
         }
+
+        cleareInput();
     }
 
-    //Receiving the selected category and recording it in the currentSelected
+    //Receiving the selected category and recording it in the currentSelectedCategory
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setCurrentSelected(event.target.value);
+        if (status) setStatus(null);
+        setCurrentSelectedCategory(event.target.value);
     };
 
     useEffect(() => {
-        console.log("UseEffect", currentSelected);
-    }, [currentSelected])
+        console.log("UseEffect", currentSelectedCategory);
+    }, [currentSelectedCategory])
 
     // Getting categories
     useEffect(() => {
@@ -81,11 +102,12 @@ const AddNewsForm: FC = () => {
 
                 if (response && response.data) {
                     setListCategories(response.data);
-                    setCurrentSelected(response.data[0].id);
+                    setCurrentSelectedCategory(response.data[0].id);
                 }
 
             } catch (e) {
                 console.log(e);
+               
             }
         }
 
@@ -94,6 +116,7 @@ const AddNewsForm: FC = () => {
 
     return (
         <div className="width-main-container">
+            {status && <div className={styles.Status} >{status}</div>}
             <Form className={styles.Form} onSubmit={handleOnSubmit} >
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label className={styles.Label}>Title</Form.Label>
