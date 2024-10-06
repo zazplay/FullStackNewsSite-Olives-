@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import styles from './AdminNewsComp.module.css';
+import Button from 'react-bootstrap/esm/Button';
 
 interface AdminNewsCompProps {
     guidID: string;
@@ -39,6 +40,7 @@ const AdminNewsComp: FC<AdminNewsCompProps> = ({
 
         addNewsToListOnDelete(newList);
     };
+
     return (
         <div className={styles.AdminNewsComp}>
             <input className={styles.AdminNewsCheckbox}
@@ -54,13 +56,17 @@ const AdminNewsComp: FC<AdminNewsCompProps> = ({
                     <div className={styles.descAdminNews}>{description}</div>
                 </div>
                 <div className={styles.dateAdminNews}>{date}</div>
-                <img
-                    className={styles.editImg}
-                    src={editIconUrl}
-                    alt="Edit"
-                    onClick={onEditClick}
-                />
-                <div className={styles.editText} onClick={onEditClick}>Edit</div>
+                <Button variant="warning" type="button" onClick={onEditClick} className="w-75 h-50 mt-4" >
+                    <div className={styles.ButtonEditStyle} >
+                        <img
+                            className={styles.editImg}
+                            src={editIconUrl}
+                            alt="Edit"
+                            onClick={onEditClick}
+                        />
+                        <div className={styles.editText} >Edit</div>
+                    </div>
+                </Button>
             </div>
         </div>
     );
