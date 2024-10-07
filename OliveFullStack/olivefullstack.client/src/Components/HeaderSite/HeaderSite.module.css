@@ -1,0 +1,61 @@
+.HeaderSite {
+    font-family:  sans-serif;
+    width:1000px;
+    margin:0 auto;
+    margin-top: -10px;
+}
+.no-margin-padding {
+    margin: 0;
+    padding: 0;
+}
+.imgGlobe {
+    width: 2em;
+}
+.link{
+    font-size:x-large;
+    font-weight:bold;
+    
+}
+
+.logo {
+    font-size: xx-large;
+    font-weight: bold;
+}
+.navigation {
+    width:89%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.LinkAdmin {
+    font-size: x-large;
+    font-weight: bold;
+    position:absolute;
+    top:15px;
+    right: 120px;
+    color: #aab0bb;
+
+}
+
+.itemLinkAccount{
+    font-size: xx-large;
+    font-weight: bold;
+    color: #aab0bb;
+    display: flex;
+    
+}
+
+.gearIcon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.gearIcon:hover {
+    color: #666;
+}

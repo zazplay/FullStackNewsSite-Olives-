@@ -1,0 +1,10 @@
+.SelectCategorys select option {
+    position: absolute;
+    background-color: white; 
+    margin-top: 20px;
+    
+  }
+
+.optionCategories{
+    color:black;
+}

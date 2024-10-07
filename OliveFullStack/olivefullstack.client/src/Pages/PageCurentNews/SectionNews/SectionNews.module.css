@@ -1,0 +1,40 @@
+.SectionNews {
+    font-size: 14px;
+}
+
+.mainCard {
+    display:flex;
+    flex-direction:column;
+    min-width: 598px;
+    text-align: left;
+    padding: 1em;
+    height: max-content;
+    padding-bottom: 50px;
+    border:none;
+}
+
+.cardBody {
+    padding: 0;
+}
+
+.Img {
+    height:auto;
+    width: 550px;
+    border-radius:30px;
+}
+
+.cardTitle {
+    padding: 0;
+    padding-left: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: x-large;
+    overflow: hidden;
+    max-width: 500px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}

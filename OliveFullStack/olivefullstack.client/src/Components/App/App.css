@@ -1,0 +1,32 @@
+﻿#root {
+    /*max-width: 1280px;*/
+    margin: 0 auto;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+th, td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.hr-head {
+    opacity:100;
+    margin:0;
+    border: 0;
+    border-top: 1px solid black;
+}
+
+.width-main-container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.style-for-title-container {
+    font-size:xx-large;
+    margin-top: 1em;
+    margin-bottom:1em;
+    text-align: left;
+    font-weight: 800;
+    font-family: sans-serif;
+}
