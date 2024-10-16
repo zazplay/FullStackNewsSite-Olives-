@@ -67,17 +67,6 @@ namespace Ovile_DAL_Layer.Repositories
         /// <returns></returns>
         public async Task Update(News item)
         {
-            var trackedEntity = _context.ChangeTracker.Entries<News>()
-                            .FirstOrDefault(e => e.Entity.Id == item.Id);
-
-            if (trackedEntity != null)
-            {
-                // Открепляем сущность
-                _context.Entry(trackedEntity.Entity).State = EntityState.Detached;
-            }
-
-            // Теперь можно прикрепить новую сущность
-            _context.News.Attach(item);
             _context.Entry(item).State = EntityState.Modified;
         }
 

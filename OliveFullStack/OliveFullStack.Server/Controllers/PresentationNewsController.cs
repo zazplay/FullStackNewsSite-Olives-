@@ -5,8 +5,6 @@ using Ovile_BLL_Layer.Interfaces;
 using OliveFullStack.PresentationLayer.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
 using OliveFullStack.PresentationLayer.Models.Requests.NewsRequests;
-using Microsoft.EntityFrameworkCore;
-using Ovile_DAL_Layer.Entities;
 
 namespace OliveFullStack.PresentationLayer.Controllers
 {
@@ -102,7 +100,6 @@ namespace OliveFullStack.PresentationLayer.Controllers
             {
                 // Проверяем существование новости
                 var existingNews = await _newsService.GetNewsById(id);
-
                 if (existingNews == null)
                 {
                     return NotFound($"News with ID {id} does not exist.");
@@ -122,9 +119,7 @@ namespace OliveFullStack.PresentationLayer.Controllers
                 }
 
                 // Обновляем существующую новость
-                var updatedNewsDto = _mapper.Map<NewsDTO>(request);
-                updatedNewsDto.Id = id;
-                updatedNewsDto.CreatedAt = existingNews.CreatedAt;
+                var updatedNewsDto = _mapper.Map(request, existingNews);
                 updatedNewsDto.CategoryId = categoryGuid;
                 updatedNewsDto.CategoryName = existingCategory.Name;
 

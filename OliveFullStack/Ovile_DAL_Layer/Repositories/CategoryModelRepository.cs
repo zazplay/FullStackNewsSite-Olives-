@@ -66,7 +66,6 @@ namespace Ovile_DAL_Layer.Repositories
         public async Task Update(Category item)
         {
             _context.Entry(item).State = EntityState.Modified;
-            //_context.Update(item);
         }
 
 

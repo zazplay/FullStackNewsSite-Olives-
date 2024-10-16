@@ -67,7 +67,7 @@ function App() {
                     <Route path="/login" element={<LoginForm />} />
                     <Route path="/add_news" element={<AddNewsForm />} />
                     <Route path="/news" element={<PageCurentNews />} />
-                    <Route path="/category" element={<CRUD_CategoryPage />} />
+                    <Route path="category" element={<CRUD_CategoryPage />} />
                 </Routes>
                 <Footer />
             </Router>
