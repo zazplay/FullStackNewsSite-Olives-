@@ -13,6 +13,7 @@ interface News {
     imgSrc: string;
     source: string;
     createdAt: Date;
+    categoryId: string; // Обновлено на categoryId
 }
 
 const AdminPage: FC = () => {
@@ -96,7 +97,7 @@ const AdminPage: FC = () => {
     const listNewsSorted = listNews?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     return (myFlag &&
             <div className="width-main-container">
-                <div className={styles.AdminTitle} >Admin <span style={{ color: "skyblue" }} >panel</span> </div>
+            <div className={styles.AdminTitle + ' ' + styles.blockInteractions} >Admin <span style={{ color: "skyblue" }} >panel</span> </div>
                 <div className={styles.ConteinerCRUDOperation} >
                     <div><InputGroup className="mb-3 w-75">
                         <Form.Control

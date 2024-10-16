@@ -42,9 +42,7 @@ namespace Notes.BusinessLogicLayer.Services
         /// <returns></returns>
         public async Task<NewsDTO> GetNewsById(Guid id)
         {
-            var news = await _unitOfWork
-                .News
-                .Get(id);
+            var news = await _unitOfWork.News.Get(id);
 
             var newsDto = _mapper.Map<NewsDTO>(news);
 
@@ -85,9 +83,7 @@ namespace Notes.BusinessLogicLayer.Services
         /// <exception cref="NewsDoesNotExist"></exception>
         public async Task<NewsDTO> UpdateNews(NewsDTO updatedNews)
         {
-            var newsExists = await _unitOfWork
-                .News
-                .Get(updatedNews.Id) != null;
+            var newsExists = await _unitOfWork.News.Get(updatedNews.Id) != null;
 
             if (!newsExists)
             {
@@ -96,9 +92,7 @@ namespace Notes.BusinessLogicLayer.Services
 
             var news = _mapper.Map<News>(updatedNews);
 
-            await _unitOfWork
-                .News
-                .Update(news);
+            await _unitOfWork.News.Update(news);
 
             await _unitOfWork.CommitChanges();
 
