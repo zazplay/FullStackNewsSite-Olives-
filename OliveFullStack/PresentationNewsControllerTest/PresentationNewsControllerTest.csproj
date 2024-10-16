@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\olivefullstack.client\olivefullstack.client.esproj" />
-    <ProjectReference Include="..\OliveFullStack.Server\OliveFullStack.PresentationLayer.csproj" />
+    <ProjectReference Include="..\OliveFullStack.Server\OliveFullStack.Server.csproj" />
     <ProjectReference Include="..\Ovile_BLL_Layer\Ovile_BLL_Layer.csproj" />
     <ProjectReference Include="..\Ovile_DAL_Layer\Ovile_DAL_Layer.csproj" />
   </ItemGroup>

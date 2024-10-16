@@ -20,6 +20,7 @@ const CRUD_CategoryPage: FC = () => {
                     <Button variant="danger" className="mx-1">Delete</Button>
                 </div>
             </div>
+            {currentCategoryId}
         </div>
     );
 
