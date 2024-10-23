@@ -1,0 +1,16 @@
+services:
+  db:
+    restart: always
+    image: "mcr.microsoft.com/mssql/server"
+  backend:
+    image: ${DOCKER_REGISTRY-}olivefullstackserver
+    build:
+      context: .
+      dockerfile: OliveFullStack.Server/Dockerfile
+  client:
+    image: frontend_news
+    build:
+      context: .
+      dockerfile: olivefullstack.client/Dockerfile
+  
+    

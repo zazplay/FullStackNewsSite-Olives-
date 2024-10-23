@@ -10,6 +10,12 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 
     <DocumentationFile></DocumentationFile>
+
+    <UserSecretsId>d6507c04-f268-477e-bf44-d44d28280c30</UserSecretsId>
+
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,6 +37,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.403" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />
   </ItemGroup>
