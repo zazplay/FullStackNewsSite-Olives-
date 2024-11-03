@@ -9,6 +9,7 @@ interface FooterCardNewsHeaderProps {
 }
 
 const FooterMainCardHeader: FC<FooterCardNewsHeaderProps> = ({ date=new Date() }) => {
+    //переводит дату в нужний формат
     function dateString(date: Date) {
         const currentDate: Date = date;
         const formattedDate: string = format(currentDate, 'dd/MM/yyyy');

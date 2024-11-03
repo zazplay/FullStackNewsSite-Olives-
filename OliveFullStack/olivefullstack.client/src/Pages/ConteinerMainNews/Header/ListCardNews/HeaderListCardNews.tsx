@@ -1,14 +1,8 @@
 import { FC } from 'react';
 import styles from './HeaderListCardNews.module.css';
 import { CardNews } from '../../../../Components/CardNews/CardNews';
-interface News {
-    id: string;
-    title: string;
-    description: string;
-    imgSrc: string;
-    source: string;
-    createdAt: Date;
-}
+import { News } from "../../../../State/NewsContext";
+
 interface HeaderListCardNewsProps {
     start?:number,
     n: number,

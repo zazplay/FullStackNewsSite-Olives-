@@ -3,16 +3,7 @@ import styles from "./HeaderStyles.module.css";
 import { Container } from "react-bootstrap";
 import HeaderListCardNews from "./ListCardNews/HeaderListCardNews";
 import MainCardHeader from "./MainCardHeader/MainCardHeader";
-
-interface News {
-    id: string;
-    title: string;
-    description: string;
-    imgSrc: string;
-    source: string;
-    createdAt: Date;
-    //createdAt: string;
-}
+import { News } from "../../../State/NewsContext"
 
 interface ArrayNews {
     array: News[]

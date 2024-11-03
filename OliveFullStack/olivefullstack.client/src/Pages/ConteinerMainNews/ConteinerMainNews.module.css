@@ -16,10 +16,12 @@
 }
 
 .ContainerCategorySelector {
+    display:flex;
+    justify-content:right;
     position: absolute;
     margin-top: 20px;
-    width: 100%;
-    left: 830px;
+    width:50%;
+    right:0;
 }
 
 /* Медиа-запросы для адаптивности */

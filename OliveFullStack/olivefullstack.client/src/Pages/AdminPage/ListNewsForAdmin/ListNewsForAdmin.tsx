@@ -3,15 +3,7 @@ import styles from './ListNewsForAdmin.module.css';
 import AdminNewsComp from '../AdminNewsComp/AdminNewsComp';
 import { format } from 'date-fns';//дл€ форматировани€ дати
 import UpdateNews from '../UpdateNews/UpdateNews';
-interface News {
-    id: string;
-    title: string;
-    description: string;
-    imgSrc: string;
-    source: string;
-    createdAt: Date;
-    categoryId: string; // ќбновлено на categoryId
-}
+import { News } from "../../../State/NewsContext";
 
 interface ObjNews {
     listObj: News[],//лист новостей

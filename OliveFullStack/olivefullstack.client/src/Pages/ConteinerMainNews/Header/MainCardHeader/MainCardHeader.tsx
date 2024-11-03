@@ -3,15 +3,7 @@ import { Card } from "react-bootstrap";
 import styles from "./MainCardHeaderStyles.module.css";
 import FooterMainCardHeader from "../FooterMainCardHeader/FooterMainCardHeader";
 import { useNavigate } from 'react-router-dom';
-
-interface News {
-    id: string;
-    title: string;
-    description: string;
-    imgSrc: string;
-    source: string;
-    createdAt: Date;
-}
+import { News } from "../../../../State/NewsContext";
 
 interface TopNews {
     topNews: News,

@@ -6,15 +6,7 @@ import Button from 'react-bootstrap/esm/Button';
 import "../../Components/App/App.css"
 import ListNewsForAdmin from './ListNewsForAdmin/ListNewsForAdmin';
 import axios from 'axios';
-interface News {
-    id: string;
-    title: string;
-    description: string;
-    imgSrc: string;
-    source: string;
-    createdAt: Date;
-    categoryId: string; // Обновлено на categoryId
-}
+import { News } from "../../State/NewsContext";
 
 const AdminPage: FC = () => {
     const [listNewsIdOnDelete, setListNewsIdOnDelete] = useState<string[]>([]);

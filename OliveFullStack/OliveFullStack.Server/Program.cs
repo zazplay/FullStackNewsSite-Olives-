@@ -23,7 +23,7 @@ builder.Logging.AddConsole();
 builder.Services.AddDbContext<NewsContext>((serviceProvider, options) =>
 {
     var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"),
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
            sqlOptions => sqlOptions.MigrationsAssembly("OliveFullStack.PresentationLayer"))
            .UseLoggerFactory(loggerFactory)
            .EnableSensitiveDataLogging(); 

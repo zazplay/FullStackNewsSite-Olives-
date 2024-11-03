@@ -1,15 +1,7 @@
 import { FC } from 'react';
 import styles from './ListCardNews.module.css';
 import { CardNews } from '../CardNews/CardNews';
-
-interface News {
-    id: string;
-    title: string;
-    description: string;
-    imgSrc: string;
-    source: string;
-    createdAt: Date;
-}
+import { News } from "../../State/NewsContext";
 
 interface ListCardNewsProps {
     start?:number,//з якого елементу починати

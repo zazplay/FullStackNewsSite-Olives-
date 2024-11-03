@@ -4,17 +4,7 @@ import Form from 'react-bootstrap/esm/Form';
 import Button from 'react-bootstrap/esm/Button';
 import SelectCategorys from '../../ConteinerMainNews/SelectCategorys/SelectCategorys';
 import axios from 'axios';
-
-
-interface News {
-    id: string;
-    title: string;
-    description: string;
-    imgSrc: string;
-    source: string;
-    createdAt: Date;
-    categoryId: string; // Обновлено на categoryId
-}
+import { News } from "../../../State/NewsContext";
 interface CurrentNews {
     flag: (f: boolean) => void,
     currentNews: News

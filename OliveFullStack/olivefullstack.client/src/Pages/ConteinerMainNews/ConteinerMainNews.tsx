@@ -5,16 +5,8 @@ import '../../Components/App/App.css';
 import axios from 'axios';
 import { ListCardNews } from '../../Components/ListCardNews/ListCardNews';
 import SelectCategorys from './SelectCategorys/SelectCategorys';
+import { News } from "../../State/NewsContext";
 
-interface News {
-    id: string;
-    title: string;
-    description: string;
-    imgSrc: string;
-    source: string;
-    createdAt: Date;
-    categoryId: string; // Обновлено на categoryId
-}
 
 const ConteinerMainNews: FC = () => {
     const [listNews, setListNews] = useState<News[]>([]);
@@ -53,9 +45,8 @@ const ConteinerMainNews: FC = () => {
     return (
         <div className="width-main-container">
             <div className={styles.ContainerCategorySelector}>
-    <SelectCategorys onCategoryChange={setSelectedCategoryId} />
-</div>
-
+                <SelectCategorys onCategoryChange={setSelectedCategoryId} />
+            </div>
             <Header array={filteredNews} />
             <hr className={styles.hr} />
             <div className="style-for-title-container">News</div>

@@ -4,15 +4,8 @@ import Card from 'react-bootstrap/esm/Card';
 import FooterMainCardHeader from '../../ConteinerMainNews/Header/FooterMainCardHeader/FooterMainCardHeader';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { News } from "../../../State/NewsContext";
 
-interface News {
-    id: string;
-    title: string;
-    description: string;
-    imgSrc: string;
-    source: string;
-    createdAt: Date;
-}
 
 const SectionNews: FC = () => {
     const location = useLocation();

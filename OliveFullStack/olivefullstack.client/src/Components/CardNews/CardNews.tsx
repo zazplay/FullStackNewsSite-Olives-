@@ -3,15 +3,8 @@ import styles from './CardNews.module.css';
 import FooterCardNews from '../FooterCardNews/FooterCardNews';
 //import imgPicture from "../../Img/img-academy-logo-400x356.jpg"
 import { useNavigate } from 'react-router-dom';
+import { News } from "../../State/NewsContext";
 
-interface News {
-    id: string;
-    title: string;
-    description: string;
-    imgSrc: string;
-    source: string;
-    createdAt: Date;
-}
 
 interface ObjNews {
     obj: News,

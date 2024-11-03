@@ -43,7 +43,7 @@ const SelectCategorys: FC<SelectCategorysProps> = ({ onCategoryChange }) => {
 
     return (
         <div className={styles.SelectCategorys}>
-            <Form.Select aria-label="Default select example" size="sm" className="w-25" onChange={handleCategoryChange}> 
+            <Form.Select aria-label="Default select example" size="sm" onChange={handleCategoryChange}> 
                 <option>All news</option>
                 {listCategories.map(category => (
                     <option key={category.id} value={category.id}>
