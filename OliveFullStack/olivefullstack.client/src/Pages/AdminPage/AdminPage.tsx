@@ -8,6 +8,7 @@ import ListNewsForAdmin from './ListNewsForAdmin/ListNewsForAdmin';
 import axios from 'axios';
 import { News } from "../../State/NewsContext";
 
+
 const AdminPage: FC = () => {
     const [listNewsIdOnDelete, setListNewsIdOnDelete] = useState<string[]>([]);
     const [listNews, setListNews] = useState<News[]>([]);

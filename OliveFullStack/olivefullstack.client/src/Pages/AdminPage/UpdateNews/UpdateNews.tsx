@@ -14,6 +14,15 @@ const OverlayComponent: React.FC = () => {
     return <div className={styles.overlay}></div>;
 };
 
+interface CurrentNews {
+    flag: (f: boolean) => void,
+    currentNews: News
+}
+
+const OverlayComponent: React.FC = () => {
+    return <div className={styles.overlay}></div>;
+};
+
 const UpdateNews: FC<CurrentNews> = ({ flag, currentNews }) => {
     const [title, setTitle] = useState(currentNews.title);
     const [desc, setDesc] = useState(currentNews.description);
@@ -61,7 +70,7 @@ const UpdateNews: FC<CurrentNews> = ({ flag, currentNews }) => {
             console.log(newNewsPayLoad);
             const response = await axios.put(`https://localhost:7142/PresentationNews/${currentNews.id}`, newNewsPayLoad, {
                 headers: {
-                    'Authorization': `Bearer ${token}` // Добавляем токен в заголовок
+                    'Authorization': `Bearer ${token}` // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 }
             }).then((resp) => {
                 console.log(resp);
