@@ -7,7 +7,6 @@ interface Category{
     id: string,
     name: string
 }
-
 interface SelectCategorysProps {
     onCategoryChange: (categoryId: string | null) => void; }
 

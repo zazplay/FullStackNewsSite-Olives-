@@ -16,7 +16,7 @@ const AddNewsForm: FC = () => {
     const [source, setSource] = useState('');
     const [currentSelectedCategory, setCurrentSelectedCategory] = useState<string>('');//Current category
     const [listCategories, setListCategories] = useState<Category[]>([]);//list of categories with API
-    const [status, setStatus] = useState<string | null>(null);
+    const [status, setStatus] = useState<string | null>(null);//добавлена недобавлена
 
     const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (status) setStatus(null);
@@ -107,7 +107,6 @@ const AddNewsForm: FC = () => {
 
             } catch (e) {
                 console.log(e);
-               
             }
         }
 

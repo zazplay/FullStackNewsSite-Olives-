@@ -5,6 +5,9 @@ import HeaderListCardNews from "./ListCardNews/HeaderListCardNews";
 import MainCardHeader from "./MainCardHeader/MainCardHeader";
 import { ListNews } from "../../../State/NewsContext";
 
+//количество виводимих карточек с новостями в шапке странице
+const COUNT = 3;
+
 //����� ������� �������� � ���������(��� ��� ���� ������� ������� � 3 ���������)
 //��������� ����� �������� � �������� ������ �� �����������
 const Header: FC<ListNews> = ({ listNews }) => {
@@ -15,7 +18,7 @@ const Header: FC<ListNews> = ({ listNews }) => {
             <Container className={styles.container} >
                 <MainCardHeader topNews={listNews[0]} listObj={listNews} />
                 <Container>
-                    <HeaderListCardNews n={3} arrayNews={listNews} />
+                    <HeaderListCardNews n={COUNT} arrayNews={listNews} />
                 </Container>
 
             </Container>

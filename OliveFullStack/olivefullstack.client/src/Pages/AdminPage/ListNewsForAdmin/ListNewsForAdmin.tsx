@@ -1,9 +1,9 @@
 import { FC, useState } from 'react';
 import styles from './ListNewsForAdmin.module.css';
 import AdminNewsComp from '../AdminNewsComp/AdminNewsComp';
-import { format } from 'date-fns';//��� �������������� ����
 import UpdateNews from '../UpdateNews/UpdateNews';
 import { News } from "../../../State/NewsContext";
+import { dateString } from '../../../State/FormateDate';
 
 interface ObjNews {
     listObj: News[],//���� ��������
@@ -13,12 +13,6 @@ interface ObjNews {
 const ListNewsForAdmin: FC<ObjNews> = ({ listObj, setListOnDelete, listOnDelete }) => {
     const [newsEditSelected, setNewsEditSelected] = useState<News>();
     const [show, setShow] = useState<boolean>(false);
-    //����������� ����
-    function dateString(date: Date) {
-        const currentDate: Date = date;
-        const formattedDate: string = format(currentDate, 'dd/MM/yyyy');
-        return formattedDate;
-    }
 
     const popUpWindowEditingNews = (news: News) => {
         console.log('Click');
@@ -38,7 +32,7 @@ const ListNewsForAdmin: FC<ObjNews> = ({ listObj, setListOnDelete, listOnDelete 
                         description={news.description}
                         date={dateString(news.createdAt)}
                         editIconUrl="https://cdn-icons-png.flaticon.com/512/4277/4277132.png"
-                        onEditClick={() => popUpWindowEditingNews(news)} // ������� �� �����
+                        onEditClick={() => popUpWindowEditingNews(news)} // спливаюче вікно Новини редагування
                         listNewsOnDelete={listOnDelete}
                         addNewsToListOnDelete={setListOnDelete}
                     />)
@@ -47,7 +41,6 @@ const ListNewsForAdmin: FC<ObjNews> = ({ listObj, setListOnDelete, listOnDelete 
             </div>
             {show && <UpdateNews flag={setShow} currentNews={newsEditSelected!} />}
         </>
-
     );
 }
 

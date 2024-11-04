@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styles from './Reference.module.css';
 import Nav from 'react-bootstrap/esm/Nav';
 
-
+//ссылки в футере страници
 const Reference: FC = () => (
   <div className={styles.Reference}>
         <div>

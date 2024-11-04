@@ -18,7 +18,7 @@ function App() {
         localStorage.removeItem("token");
         localStorage.removeItem("isAdmin");
 
-        alert("Ваша сесія завершена через 20 хвилин бездіяльності.");
+        alert("Ваша сесия завершина. Причина: более 20 минут бездействия.");
         console.log("Delete token.");
         // Можна додати перенаправлення, наприклад:
         window.location.href = "/home";

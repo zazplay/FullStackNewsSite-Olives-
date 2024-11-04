@@ -13,6 +13,7 @@ const SectionNews: FC = () => {
     const [currentNews, setCurrentNews] = useState<News | null>(null);
     const token = localStorage.getItem("token");
 
+    //получение новости по id
     useEffect(() => {
 
         const getNewsById = async () => {
@@ -36,8 +37,6 @@ const SectionNews: FC = () => {
         getNewsById();
     },[Id,token])
 
-
-        
     return (
         <Card className={styles.mainCard} >
             <Card.Img className={styles.Img} variant="top" src={currentNews?.imgSrc} />

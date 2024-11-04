@@ -7,13 +7,7 @@ import { faUser, faCog } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 const HeaderSite: FC = () => {
-    //const [isAdmin, setIsAdmin] = useState<boolean>(false);
     const navigate = useNavigate();
-
-    //useEffect(() => {
-    //    const adminStatus = localStorage.getItem('isAdmin');
-    //    setIsAdmin(adminStatus === 'true');
-    //}, []);
 
     const handleAdminClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         event.preventDefault();
