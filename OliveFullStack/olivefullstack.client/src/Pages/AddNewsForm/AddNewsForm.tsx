@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import styles from "../LoginForm/LoginForm.module.css"
 import axios from 'axios';
+import { getAllCategory } from '../../State/Request';
 
 interface Category {
     id: string,
@@ -93,21 +94,9 @@ const AddNewsForm: FC = () => {
     // Getting categories
     useEffect(() => {
         const handleLoad = async () => {
-            console.log("SelectCategorys");
-            
-            try {
-                const response = await axios.get("https://localhost:7142/PresentationCategory");
-               
-                console.log("response", response.data);
-
-                if (response && response.data) {
-                    setListCategories(response.data);
-                    setCurrentSelectedCategory(response.data[0].id);
-                }
-
-            } catch (e) {
-                console.log(e);
-            }
+            const resulrRequest = await getAllCategory();
+            setListCategories(resulrRequest);
+            setCurrentSelectedCategory(resulrRequest[0]?.id);
         }
 
         handleLoad();

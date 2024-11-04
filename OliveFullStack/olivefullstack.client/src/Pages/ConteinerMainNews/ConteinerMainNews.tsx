@@ -4,7 +4,8 @@ import Header from './Header/Header';
 import '../../Components/App/App.css';
 import { ListCardNews } from '../../Components/ListCardNews/ListCardNews';
 import SelectCategorys from './SelectCategorys/SelectCategorys';
-import { getAllNews, NewsContext } from "../../State/NewsContext";
+import { NewsContext } from "../../State/NewsContext";
+import { getAllNews } from '../../State/Request';
 
 //начальний индекс в списке новостей для первой части
 const START_ACCOUNT_FIRST_PART = 3;

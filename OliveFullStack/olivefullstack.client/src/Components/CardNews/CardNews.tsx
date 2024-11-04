@@ -4,11 +4,11 @@ import FooterCardNews from '../FooterCardNews/FooterCardNews';
 import { useNavigate } from 'react-router-dom';
 import { News } from "../../State/NewsContext";
 
-
 interface ObjNews {
     obj: News,
     listObj: News[]
 }
+
 export const CardNews: FC<ObjNews> = ({ obj, listObj }) => {
 
     const navigate = useNavigate();

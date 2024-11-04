@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/esm/Button';
 import "../../Components/App/App.css"
 import ListNewsForAdmin from './ListNewsForAdmin/ListNewsForAdmin';
 import axios from 'axios';
-import { getAllNews, NewsContext } from "../../State/NewsContext";
+import { NewsContext } from "../../State/NewsContext";
+import { getAllNews } from '../../State/Request';
 
 
 const AdminPage: FC = () => {
@@ -42,7 +43,7 @@ const AdminPage: FC = () => {
         console.log('listNewsIdOnDelete', listNewsIdOnDelete);
 
         const token = localStorage.getItem('token');
-        console.log("handleLoad");
+        console.log("handleClick");
 
         try {
             const response = await axios.delete("https://localhost:7142/PresentationNews/deleteByIds", {

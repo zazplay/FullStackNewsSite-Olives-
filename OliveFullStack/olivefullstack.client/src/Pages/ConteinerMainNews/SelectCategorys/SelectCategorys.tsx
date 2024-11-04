@@ -1,32 +1,25 @@
 import { FC, useState,useEffect } from 'react';
 import styles from './SelectCategorys.module.css';
 import Form from 'react-bootstrap/esm/Form';
-import axios from 'axios';
+import { getAllCategory } from '../../../State/Request';
 
 interface Category{
     id: string,
     name: string
 }
 interface SelectCategorysProps {
-    onCategoryChange: (categoryId: string | null) => void; }
+    onCategoryChange: (categoryId: string | null) => void;
+}
 
 const SelectCategorys: FC<SelectCategorysProps> = ({ onCategoryChange }) => {
 
     const [listCategories, setListCategories] = useState<Category[]>([]);
 
+    // Getting categories
     useEffect(() => {
         const handleLoad = async () => {
-
-            try {
-                const response = await axios.get("https://localhost:7142/PresentationCategory");
-
-                if (response && response.data) {
-                    setListCategories(response.data);
-                } 
-
-            } catch (e) {
-                console.log(e);
-            }
+            const resulrRequest = await getAllCategory();
+            setListCategories(resulrRequest);
         }
 
         handleLoad();

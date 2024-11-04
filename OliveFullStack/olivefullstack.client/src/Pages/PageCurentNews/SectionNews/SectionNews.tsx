@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { News } from "../../../State/NewsContext";
 
-
 const SectionNews: FC = () => {
     const location = useLocation();
     const { Id } = location.state || {}; // ќтримуЇмо дан≥ з state

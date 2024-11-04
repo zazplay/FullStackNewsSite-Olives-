@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
 
 export interface News {
@@ -31,24 +30,7 @@ export type NewsProviderProps = {
     children: ReactNode;
 }
 
-// geting list news
-//отримання всіх новин
-export async function getAllNews() {
-    try {
-        const response = await axios.get<News[]>("https://localhost:7142/PresentationNews");
-        // Логируем ответ
-        console.log("response", response.data);
-        // Записываем данные в массив
-        if (response && response.data) {
-            // Предполагается, что response.data содержит массив новостей
-            return (response.data);
-        }
 
-    } catch (e) {
-        console.log(e);
-    }
-    return [];
-}
 
 export default function NewsProvaider({ children }: NewsProviderProps) {
     const [objNews, setListNews] = useState<News[]>([]);

@@ -10,6 +10,7 @@ interface ObjNews {
     setListOnDelete: (ids: string[]) => void,//����� ������� ������ ���� ��� ��������
     listOnDelete: string[] //���� ���� ����� �������� id ������� �� ��������
 }
+
 const ListNewsForAdmin: FC<ObjNews> = ({ listObj, setListOnDelete, listOnDelete }) => {
     const [newsEditSelected, setNewsEditSelected] = useState<News>();
     const [show, setShow] = useState<boolean>(false);
@@ -24,7 +25,6 @@ const ListNewsForAdmin: FC<ObjNews> = ({ listObj, setListOnDelete, listOnDelete 
         <>
             <div className={styles.ListNewsForAdmin}>
                 {listObj.map((news, i) => {
-
                     return (<AdminNewsComp key={i}
                         guidID={news.id}
                         imageUrl={news.imgSrc}
