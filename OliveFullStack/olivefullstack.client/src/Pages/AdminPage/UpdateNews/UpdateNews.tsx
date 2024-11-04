@@ -5,14 +5,6 @@ import Button from 'react-bootstrap/esm/Button';
 import SelectCategorys from '../../ConteinerMainNews/SelectCategorys/SelectCategorys';
 import axios from 'axios';
 import { News } from "../../../State/NewsContext";
-interface CurrentNews {
-    flag: (f: boolean) => void,
-    currentNews: News
-}
-
-const OverlayComponent: React.FC = () => {
-    return <div className={styles.overlay}></div>;
-};
 
 interface CurrentNews {
     flag: (f: boolean) => void,

@@ -72,6 +72,4 @@ const AdminNewsComp: FC<AdminNewsCompProps> = ({
     );
 }
 
-
-
 export default AdminNewsComp;

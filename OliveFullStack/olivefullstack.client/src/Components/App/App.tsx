@@ -10,6 +10,7 @@ import PageCurentNews from '../../Pages/PageCurentNews/PageCurentNews';
 import ConteinerMainNews from '../../Pages/ConteinerMainNews/ConteinerMainNews';
 import CRUD_CategoryPage from '../../Pages/CRUD_CategoryPage/CRUD_CategoryPage';
 import { useEffect, useRef } from 'react';
+import NewsProvaider from "../../State/NewsContext";
 function App() {
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -56,21 +57,23 @@ function App() {
 
     return (
         <div>
-            <Router >
-                <HeaderSite />
-                <hr className="hr-head" />
-                <Routes>
-                    <Route path="/" element={<ConteinerMainNews />} />
-                    <Route path="/home" element={<ConteinerMainNews />} />
-                    <Route path="/admin" element={<AdminPage />} />
-                    <Route path="/registation" element={<RegistrForm />} />
-                    <Route path="/login" element={<LoginForm />} />
-                    <Route path="/add_news" element={<AddNewsForm />} />
-                    <Route path="/news" element={<PageCurentNews />} />
-                    <Route path="/category" element={<CRUD_CategoryPage />} />
-                </Routes>
-                <Footer />
-            </Router>
+            <NewsProvaider>
+                <Router >
+                    <HeaderSite />
+                    <hr className="hr-head" />
+                    <Routes>
+                        <Route path="/" element={<ConteinerMainNews />} />
+                        <Route path="/home" element={<ConteinerMainNews />} />
+                        <Route path="/admin" element={<AdminPage />} />
+                        <Route path="/registation" element={<RegistrForm />} />
+                        <Route path="/login" element={<LoginForm />} />
+                        <Route path="/add_news" element={<AddNewsForm />} />
+                        <Route path="/news" element={<PageCurentNews />} />
+                        <Route path="/category" element={<CRUD_CategoryPage />} />
+                    </Routes>
+                    <Footer />
+                </Router>
+            </NewsProvaider>
         </div>
     );
 }

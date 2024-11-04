@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import styles from './AdminPage.module.css';
 import Form from 'react-bootstrap/esm/Form';
 import InputGroup from 'react-bootstrap/esm/InputGroup';
@@ -6,56 +6,36 @@ import Button from 'react-bootstrap/esm/Button';
 import "../../Components/App/App.css"
 import ListNewsForAdmin from './ListNewsForAdmin/ListNewsForAdmin';
 import axios from 'axios';
-import { News } from "../../State/NewsContext";
+import { getAllNews, NewsContext } from "../../State/NewsContext";
 
 
 const AdminPage: FC = () => {
-    const [listNewsIdOnDelete, setListNewsIdOnDelete] = useState<string[]>([]);
-    const [listNews, setListNews] = useState<News[]>([]);
-    const [reload, setReload] = useState<boolean>(false);
-    const [myFlag] = useState((localStorage.getItem('token')));
+    const [listNewsIdOnDelete, setListNewsIdOnDelete] = useState<string[]>([]);//список категорій
+    const {objNews, setListNews } = useContext(NewsContext);//деструктуризация списка новостей и сетера для него
+    const [reload, setReload] = useState<boolean>(false);//флаг для перезагрузки страници
+    const [myFlag] = useState((localStorage.getItem('token')));//флаг для отображения страници если токена нету страница не отображается
 
-    //отримання всих новин
+    //отримання всіх новин
     useEffect(() => {
-
+        //загрузка списка новостей
         const handleLoad = async () => {
-            const token = localStorage.getItem('token');
-            console.log("handleLoad");
-
-            try {
-                // Асинхронный запрос с использованием await
-                const response = await axios.get("https://localhost:7142/PresentationNews", {
-                    headers: {
-                        'Authorization': `Bearer ${token}` // Добавляем токен в заголовок
-                    }
-                });
-
-                // Логируем ответ
-                console.log("response", response.data);
-
-                // Записываем данные в массив
-                if (response && response.data) {
-                    setListNews(response.data);
-                } // Предполагается, что response.data содержит массив заметок
-
-
-            } catch (e) {
-                console.log(e);
-            }
+            await getAllNews().then(newsArray => {
+                console.log("newsArray", newsArray); // Використовуємо отриманий масив
+                setListNews(newsArray);
+            });
         }
 
         handleLoad();
-    }, [reload])
+    }, [reload, setListNews])
 
-    useEffect(() => {
-        // Логируем обновленное состояние listNews
-        console.log("Updated listNews", listNews);
-    }, [listNews]);
+     useEffect(() => {
+        // Логируем обновленное состояние objNews
+        //console.log("Updated objNews", objNews);
+    }, [objNews]);
 
     //функция видалення новин
 
     // (Витя добавил удаление потому что мне стало скучно :D )
-
     const handleClick = async () => {
         if (listNewsIdOnDelete === null || listNewsIdOnDelete.length === 0) return;
         console.log("Delete button");
@@ -77,7 +57,7 @@ const AdminPage: FC = () => {
             console.log("Response:", response);
             setReload(!reload);
             window.location.reload();
-            // перезагрузка списка новин
+            // перезагрузка списка новостей
         } catch (e) {
             console.error("Error deleting news:", e);
             if (axios.isAxiosError(e)) {
@@ -87,7 +67,7 @@ const AdminPage: FC = () => {
         }
     }
 
-    const listNewsSorted = listNews?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    const listNewsSorted = objNews?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     return (myFlag &&
             <div className="width-main-container">
             <div className={styles.AdminTitle + ' ' + styles.blockInteractions} >Admin <span style={{ color: "skyblue" }} >panel</span> </div>
@@ -110,9 +90,7 @@ const AdminPage: FC = () => {
                     <div className={styles.Publish}>Filter</div>
             </div>
             <ListNewsForAdmin listObj={listNewsSorted} listOnDelete={listNewsIdOnDelete} setListOnDelete={setListNewsIdOnDelete} />
-
             </div>
-          
     );
 }
 

@@ -17,12 +17,9 @@ const SelectCategorys: FC<SelectCategorysProps> = ({ onCategoryChange }) => {
 
     useEffect(() => {
         const handleLoad = async () => {
-            console.log("SelectCategorys");
 
             try {
                 const response = await axios.get("https://localhost:7142/PresentationCategory");
-
-                console.log("response", response.data);
 
                 if (response && response.data) {
                     setListCategories(response.data);

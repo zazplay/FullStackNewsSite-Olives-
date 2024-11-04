@@ -1,53 +1,38 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import styles from './ConteinerMainNews.module.css';
 import Header from './Header/Header';
 import '../../Components/App/App.css';
-import axios from 'axios';
 import { ListCardNews } from '../../Components/ListCardNews/ListCardNews';
 import SelectCategorys from './SelectCategorys/SelectCategorys';
-import { News } from "../../State/NewsContext";
+import { getAllNews, NewsContext } from "../../State/NewsContext";
 
 
 const ConteinerMainNews: FC = () => {
-    const [listNews, setListNews] = useState<News[]>([]);
+    const { objNews, setListNews } = useContext(NewsContext);
     const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
 
-    // geting list news
     useEffect(() => {
         const handleLoad = async () => {
-            const token = localStorage.getItem('token');
-
-            try {
-                const response = await axios.get("https://localhost:7142/PresentationNews", {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                console.log("response", response.data);
-
-                if (response && response.data) {
-                    setListNews(response.data);
-                }
-
-            } catch (e) {
-                console.log(e);
-            }
-        };
+            await getAllNews().then(newsArray => {
+                console.log("newsArray", newsArray); // Використовуємо отриманий масив
+                setListNews(newsArray);
+            });
+        }
 
         handleLoad();
-    }, []);
+
+    }, [setListNews]);
 
     const filteredNews = (selectedCategoryId
-        ? listNews.filter(news => news.categoryId === selectedCategoryId)
-        : listNews).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        ? objNews.filter(news => news.categoryId === selectedCategoryId)
+        : objNews).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
        
     return (
         <div className="width-main-container">
             <div className={styles.ContainerCategorySelector}>
                 <SelectCategorys onCategoryChange={setSelectedCategoryId} />
             </div>
-            <Header array={filteredNews} />
+            <Header listNews={filteredNews} />
             <hr className={styles.hr} />
             <div className="style-for-title-container">News</div>
             <div className={styles.BodyNews}>
