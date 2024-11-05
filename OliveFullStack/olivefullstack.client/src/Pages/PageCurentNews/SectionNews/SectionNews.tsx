@@ -1,54 +1,43 @@
-import { FC, useEffect, useState} from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './SectionNews.module.css';
 import Card from 'react-bootstrap/esm/Card';
 import FooterMainCardHeader from '../../ConteinerMainNews/Header/FooterMainCardHeader/FooterMainCardHeader';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 import { News } from "../../../State/NewsContext";
+import { getNewsById } from '../../../State/Request';
 
 const SectionNews: FC = () => {
     const location = useLocation();
     const { Id } = location.state || {}; // Отримуємо дані з state
     const [currentNews, setCurrentNews] = useState<News | null>(null);
-    const token = localStorage.getItem("token");
 
     //получение новости по id
     useEffect(() => {
 
-        const getNewsById = async () => {
-            try {
-                // Асинхронный запрос с использованием await
-                const response = await axios.get(`https://localhost:7142/PresentationNews/${Id}`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}` // Добавляем токен в заголовок
-                    }
-                })
-
-                // Логируем ответ
-                console.log("response.data", response.data);
-                setCurrentNews(response.data);
-                
-            } catch (e) {
-                console.log(e);
-            }
+        const getNews = async () => {
+            getNewsById(Id).then(prom => {
+                setCurrentNews(prom);
+            });
         }
 
-        getNewsById();
-    },[Id,token])
+        getNews();
+    }, [Id])
+
+    useEffect(() => { }, [currentNews]);
 
     return (
         <Card className={styles.mainCard} >
-            <Card.Img className={styles.Img} variant="top" src={currentNews?.imgSrc} />
-            <Card.Body className={styles.cardBody} >
+            < Card.Img className={styles.Img} variant="top" src={currentNews?.imgSrc} />
+            {currentNews && <Card.Body className={styles.cardBody} >
                 <Card.Title className={styles.cardTitle}>{currentNews?.title} </Card.Title>
                 <Card.Text>
                     {currentNews?.description}
-                    <FooterMainCardHeader date={currentNews?.createdAt}/>
+                    <FooterMainCardHeader date={currentNews?.createdAt} />
                 </Card.Text>
-            </Card.Body>
+            </Card.Body>}
         </Card>
     );
 
-} 
+}
 export default SectionNews;
 

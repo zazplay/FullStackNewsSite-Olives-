@@ -1,10 +1,10 @@
-import axios from 'axios';
 import { FC, useState } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import Form from 'react-bootstrap/esm/Form';
 import { useNavigate } from 'react-router-dom';
 import "../../Components/App/App.css"
 import styles from "../LoginForm/LoginForm.module.css"
+import { registr } from "../../State/Request";
 
 const RegistrForm: FC = () => {
     const [login, setLogin] = useState<string>('');
@@ -29,25 +29,25 @@ const RegistrForm: FC = () => {
 
     const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
-        if (pass !== repeatPass) {
+        if (!login) {
+            alert("Wrong login.");
+            return;
+        }
+        else if (!email) {
+            alert("Wrong email.");
+            return;
+        }
+        else if (!pass) {
+            alert("Wrong pass.");
+            return;
+        }
+        else if (pass !== repeatPass) {
             setRepeatPass("");
             alert("Wrong repeat pass.")
             return;
         }
 
-        const loginPayload = { Username: login, Email: email, Password: pass };
-        try {
-            axios.post("https://localhost:7142/api/Authenticate/register", loginPayload).then((response) => {
-                if (response.status != 200) { console.log(response.status) }
-
-            }).catch((e) => console.log("Error", e));
-
-
-        }
-        catch (e) {
-            console.log(e);
-        }
+        registr({ Username: login, Email: email, Password: pass });
 
         setTimeout(() => {
             return navigate('/login');
