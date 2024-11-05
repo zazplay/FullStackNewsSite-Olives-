@@ -30,8 +30,6 @@ export type NewsProviderProps = {
     children: ReactNode;
 }
 
-
-
 export default function NewsProvaider({ children }: NewsProviderProps) {
     const [objNews, setListNews] = useState<News[]>([]);
 

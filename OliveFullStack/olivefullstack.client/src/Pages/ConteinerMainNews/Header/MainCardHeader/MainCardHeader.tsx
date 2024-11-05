@@ -10,13 +10,10 @@ interface TopNews {
     listObj: News[]
 }
 
-
 const MainCardHeader: FC<TopNews> = ({ topNews, listObj }) => {
-
     const navigate = useNavigate();
 
     const handleClick = () => {
-
         const data = { Id: topNews.id, listObj}
         navigate("/news", {state:data});
 
@@ -30,9 +27,7 @@ const MainCardHeader: FC<TopNews> = ({ topNews, listObj }) => {
                 <Card.Text>
                     <div className={styles.mainCardDesc}>
                          {topNews?.description}
-                         
                     </div>
-                    
                     <FooterMainCardHeader date={topNews?.createdAt} />
                 </Card.Text>
             </Card.Body>

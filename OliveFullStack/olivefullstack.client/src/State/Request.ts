@@ -57,6 +57,35 @@ export async function getNewsById(Id: string) {
     return null;
 }
 
+//функция видалення новин
+// (Витя добавил удаление потому что мне стало скучно :D )
+export async function deleteListNest(listNewsIdOnDelete: string[]) {
+    if (listNewsIdOnDelete === null || listNewsIdOnDelete.length === 0) return;
+    console.log("Delete button");
+    console.log('listNewsIdOnDelete', listNewsIdOnDelete);
+
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await axios.delete(`${HOST}PresentationNews/deleteByIds`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Accept': '*/*'
+            },
+            data: { ids: listNewsIdOnDelete }
+        });
+
+        // Логируем ответ
+        console.log("deleteListNest->response.data", response.data);
+    } catch (e) {
+        console.error("Error deleting news:", e);
+        if (axios.isAxiosError(e)) {
+            console.error("Response data:", e.response?.data);
+            console.error("Status:", e.response?.status);
+        }
+    }
+}
 interface RegistrPayload  {
     Username: string,
     Email: string,
