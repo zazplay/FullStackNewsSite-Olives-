@@ -61,25 +61,25 @@ namespace OliveFullStack.PresentationLayer.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("add/")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddNews([FromBody] AddNewsRequest request)
         {
             var newsDto = _mapper.Map<NewsDTO>(request);
 
-            if (Guid.TryParse(request.Category, out Guid categoryGuid))
+            if (Guid.TryParse(request.CategoryId, out Guid categoryGuid))
             {
                 var existingCategory = await _categoryService.GetCategoryById(categoryGuid);
                 if (existingCategory == null)
                 {
-                    return BadRequest("Category does not exist.");
+                    return BadRequest("CategoryId does not exist.");
                 }
                 newsDto.CategoryId = existingCategory.Id;
                 newsDto.CategoryName = existingCategory.Name; // Set CategoryName from the existing category
             }
             else
             {
-                return BadRequest("Invalid Category GUID");
+                return BadRequest("Invalid CategoryId GUID");
             }
 
             try
@@ -94,7 +94,7 @@ namespace OliveFullStack.PresentationLayer.Controllers
         }
 
         [HttpPut]
-        [Route("{id:Guid}")]
+        [Route("update/{id:Guid}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateNews([FromRoute] Guid id, [FromBody] UpdateNewsRequest request)
         {
@@ -118,7 +118,7 @@ namespace OliveFullStack.PresentationLayer.Controllers
                 var existingCategory = await _categoryService.GetCategoryById(categoryGuid);
                 if (existingCategory == null)
                 {
-                    return BadRequest($"Category with ID {categoryGuid} does not exist.");
+                    return BadRequest($"CategoryId with ID {categoryGuid} does not exist.");
                 }
 
                 // Обновляем существующую новость

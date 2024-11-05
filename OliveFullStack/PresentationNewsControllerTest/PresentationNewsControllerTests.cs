@@ -159,7 +159,7 @@ namespace PresentationNewsController_Testing
             var categoryId = Guid.NewGuid();
             var request = new AddNewsRequest
             {
-                Category = categoryId.ToString(),
+                CategoryId = categoryId.ToString(),
                 // Добавьте другие необходимые свойства
             };
 
@@ -167,7 +167,7 @@ namespace PresentationNewsController_Testing
             var existingCategory = new CategoryDTO
             {
                 Id = categoryId,
-                Name = "Test Category"
+                Name = "Test CategoryId"
             };
             var createdNews = new NewsDTO();
             var expectedResponse = new NewsResponse();
@@ -216,7 +216,7 @@ namespace PresentationNewsController_Testing
                 Description = "AddNewsRequest Description",
                 ImgSrc = "AddNewsRequest img",
                 Source = "Internet",
-                Category = "8BAB584B-E7AC-4D9D-5D0A-08DCE3B9C621"
+                CategoryId = "8BAB584B-E7AC-4D9D-5D0A-08DCE3B9C621"
             };
             var newsDto = new NewsDTO
             {
@@ -229,14 +229,14 @@ namespace PresentationNewsController_Testing
             };
 
             _mockMapper.Setup(m => m.Map<NewsDTO>(request)).Returns(newsDto);
-            _mockNewsService.Setup(s => s.CreateNews(newsDto)).ThrowsAsync(new Exception("Category does not exist."));
+            _mockNewsService.Setup(s => s.CreateNews(newsDto)).ThrowsAsync(new Exception("CategoryId does not exist."));
 
             // Act
             var result = await _controller.AddNews(request);
 
             // Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
-            Assert.Equal("Category does not exist.", badRequestResult.Value);
+            Assert.Equal("CategoryId does not exist.", badRequestResult.Value);
         }
 
         // UpdateNews - returns ok
@@ -262,7 +262,7 @@ namespace PresentationNewsController_Testing
                 ImgSrc = "Existing img",
                 Source = "Internet",
                 CategoryId = categoryId,
-                CategoryName = "Existing Category"
+                CategoryName = "Existing CategoryId"
             };
             var updatedNewsDto = new NewsDTO
             {
@@ -272,12 +272,12 @@ namespace PresentationNewsController_Testing
                 ImgSrc = request.ImgSrc,
                 Source = request.Source,
                 CategoryId = categoryId,
-                CategoryName = "Updated Category"
+                CategoryName = "Updated CategoryId"
             };
             var categoryDto = new CategoryDTO
             {
                 Id = categoryId,
-                Name = "Updated Category"
+                Name = "Updated CategoryId"
             };
             var expectedResponse = new NewsResponse
             {
@@ -287,7 +287,7 @@ namespace PresentationNewsController_Testing
                 ImgSrc = request.ImgSrc,
                 Source = request.Source,
                 CategoryId = categoryId,
-                CategoryName = "Updated Category"
+                CategoryName = "Updated CategoryId"
             };
 
             // Mock GetNewsById to return the existing news

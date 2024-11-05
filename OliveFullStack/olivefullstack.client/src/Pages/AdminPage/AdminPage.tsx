@@ -18,8 +18,7 @@ const AdminPage: FC = () => {
         //загрузка списка новостей
         const handleLoad = async () => {
             await getAllNews().then(newsArray => {
-                console.log("newsArray", newsArray); // Використовуємо отриманий масив
-                setListNews(newsArray);
+                setListNews(newsArray);// Використовуємо отриманий масив
             });
         }
 
@@ -33,9 +32,13 @@ const AdminPage: FC = () => {
 
     //функция видалення новин
     const handleClick = async () => {
-        deleteListNest(listNewsIdOnDelete);
-        // перезагрузка списка новостей
-        window.location.reload();
+        deleteListNest(listNewsIdOnDelete).then(respons => {
+            if (respons) {
+                // перезагрузка списка новостей
+                window.location.reload();
+            }
+        });
+        
     }
 
     const listNewsSorted = objNews?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());

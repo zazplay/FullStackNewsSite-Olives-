@@ -17,12 +17,12 @@ public class AutoMaperProfiles : Profile
         // Маппинг из NewsDTO в News
         CreateMap<NewsDTO, News>()
             .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.CategoryId))
-            .ForMember(dest => dest.Category, opt => opt.Ignore()); // Category не передаётся напрямую из DTO, поэтому игнорируем
+            .ForMember(dest => dest.Category, opt => opt.Ignore()); // CategoryId не передаётся напрямую из DTO, поэтому игнорируем
 
         CreateMap<Category, CategoryDTO>().ReverseMap();
 
         CreateMap<AddNewsRequest, NewsDTO>()
-            .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category))
+            .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.CategoryId))
             .ForMember(dest => dest.CategoryId, opt => opt.Ignore());
 
         CreateMap<UpdateNewsRequest, NewsDTO>()

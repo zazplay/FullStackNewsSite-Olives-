@@ -1,8 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import styles from "../LoginForm/LoginForm.module.css"
-import axios from 'axios';
-import { getAllCategory } from '../../State/Request';
+import { createNews, getAllCategory } from '../../State/Request';
 
 interface Category {
     id: string,
@@ -15,7 +14,7 @@ const AddNewsForm: FC = () => {
     const [desc, setDesc] = useState('');
     const [imgRef, setImgRef] = useState('');
     const [source, setSource] = useState('');
-    const [currentSelectedCategory, setCurrentSelectedCategory] = useState<string>('');//Current category
+    const [currentSelectedCategoryId, setCurrentSelectedCategoryId] = useState<string>('');//Current category
     const [listCategories, setListCategories] = useState<Category[]>([]);//list of categories with API
     const [status, setStatus] = useState<string | null>(null);//добавлена недобавлена
 
@@ -50,53 +49,43 @@ const AddNewsForm: FC = () => {
         event.preventDefault();
         if (status) setStatus(null);
 
-        const token = localStorage.getItem('token');
-
         if (!title || !desc || !imgRef || !source) {
             console.log("title", title);
             return;
         }
 
-        const newNewsPayLoad = { Title: title, Description: desc, ImgSrc: imgRef, Source: source, Category: currentSelectedCategory }
-
-        try {
-            console.log(newNewsPayLoad);
-            const response = await axios.post("https://localhost:7142/PresentationNews", newNewsPayLoad, {
-                headers: {
-                    'Authorization': `Bearer ${token}` // Добавляем токен в заголовок
-                }
-            }).then((resp) => {
-                console.log(resp);
-            }).catch((e) => {
-                console.log(e);
-            });
-
-            console.log("response", response);
-        }
-        catch (err) {
-            console.log(err);
-            return;
+        const newNewsPayLoad = {
+            Title: title,
+            Description: desc,
+            ImgSrc: imgRef,
+            Source: source,
+            CategoryId: currentSelectedCategoryId
         }
 
-        cleareInput();
+        //create News
+        createNews(newNewsPayLoad).then(response => {
+            if (response) {
+                cleareInput();
+            }
+        });
     }
 
-    //Receiving the selected category and recording it in the currentSelectedCategory
+    //Receiving the selected category and recording it in the currentSelectedCategoryId
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         if (status) setStatus(null);
-        setCurrentSelectedCategory(event.target.value);
+        setCurrentSelectedCategoryId(event.target.value);
     };
 
     useEffect(() => {
-        console.log("UseEffect", currentSelectedCategory);
-    }, [currentSelectedCategory])
+        console.log("UseEffect", currentSelectedCategoryId);
+    }, [currentSelectedCategoryId])
 
     // Getting categories
     useEffect(() => {
         const handleLoad = async () => {
             const resulrRequest = await getAllCategory();
             setListCategories(resulrRequest);
-            setCurrentSelectedCategory(resulrRequest[0]?.id);
+            setCurrentSelectedCategoryId(resulrRequest[0]?.id);
         }
 
         handleLoad();

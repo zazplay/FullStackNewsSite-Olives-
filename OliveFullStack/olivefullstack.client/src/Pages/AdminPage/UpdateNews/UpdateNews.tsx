@@ -3,8 +3,8 @@ import styles from './UpdateNews.module.css';
 import Form from 'react-bootstrap/esm/Form';
 import Button from 'react-bootstrap/esm/Button';
 import SelectCategorys from '../../ConteinerMainNews/SelectCategorys/SelectCategorys';
-import axios from 'axios';
 import { News } from "../../../State/NewsContext";
+import { updateNews } from '../../../State/Request';
 
 interface CurrentNews {
     flag: (f: boolean) => void,
@@ -20,7 +20,8 @@ const UpdateNews: FC<CurrentNews> = ({ flag, currentNews }) => {
     const [desc, setDesc] = useState(currentNews.description);
     const [imgRef, setImgRef] = useState(currentNews.imgSrc);
     const [source, setSource] = useState(currentNews.source);
-    const [currentSelectedCategoryId, setCurrentSelectedCategoryId] = useState<string | null>(currentNews.categoryId);
+    //категория вибраная в даний момент
+    const [currentSelectedCategoryId, setCurrentSelectedCategoryId] = useState<string>(currentNews.categoryId);
     const [isOverlayActive, setOverlayActive] = useState(true);
 
     const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,41 +48,28 @@ const UpdateNews: FC<CurrentNews> = ({ flag, currentNews }) => {
     //Sending the created news to the API
     const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log("Submit");
-
-        const token = localStorage.getItem('token');
 
         if (!title || !desc || !imgRef || !source) {
             console.log("title", title);
             return;
         }
-        console.log(currentSelectedCategoryId);
-        const newNewsPayLoad = { Title: title, Description: desc, ImgSrc: imgRef, Source: source, CategoryId: currentSelectedCategoryId }
 
-        try {
-            console.log(newNewsPayLoad);
-            const response = await axios.put(`https://localhost:7142/PresentationNews/${currentNews.id}`, newNewsPayLoad, {
-                headers: {
-                    'Authorization': `Bearer ${token}` // ��������� ����� � ���������
-                }
-            }).then((resp) => {
-                console.log(resp);
-            }).catch((e) => {
-                console.log(e);
-            });
+        const newNewsPayLoad = {
+            Title: title,
+            Description: desc,
+            ImgSrc: imgRef,
+            Source: source,
+            CategoryId: currentSelectedCategoryId
+        }
 
-            console.log("response", response);
-        }
-        catch (err) {
-            alert(err);
-            return;
-        }
-        finally {
-            cleareInput();
-            handleOnClickButtonClose();
-        }
-        alert("News update.");
-        location.reload();
+        updateNews(newNewsPayLoad, { currentNewsId: currentNews.id }).then(resp => {
+            if (resp) {
+                cleareInput();
+                handleOnClickButtonClose();
+                alert("News update.");
+                location.reload();
+            }
+        });
     }
 
     const handleOnClickButtonClose = () => {
@@ -93,7 +81,11 @@ const UpdateNews: FC<CurrentNews> = ({ flag, currentNews }) => {
         <>
             {isOverlayActive && <OverlayComponent />}
             <div className={styles.UpdateNews} >
-                <Button variant="danger" type="button" onClick={() => handleOnClickButtonClose()} className="position-absolute top-0 end-0 m-2" >X</Button>
+                <Button
+                    variant="danger"
+                    type="button"
+                    onClick={() => handleOnClickButtonClose()}
+                    className="position-absolute top-0 end-0 m-2" >X</Button>
                 <Form className={styles.Form} onSubmit={handleOnSubmit} >
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label className={styles.Label}>Title</Form.Label>
@@ -131,7 +123,10 @@ const UpdateNews: FC<CurrentNews> = ({ flag, currentNews }) => {
                             onChange={handleSource}
                         />
                     </Form.Group>
-                    <SelectCategorys onCategoryChange={setCurrentSelectedCategoryId} />
+                    <SelectCategorys
+                        onCategoryChange={setCurrentSelectedCategoryId}
+                        categoryId={currentSelectedCategoryId}
+                    />
                     <Button variant="primary" type="submit" className="mt-3">Update</Button>
                 </Form>
             </div>

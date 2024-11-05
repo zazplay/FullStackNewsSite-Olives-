@@ -220,7 +220,7 @@ namespace OliveFullStack.PresentationLayer.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Ovile_DAL_Layer.Entities.Category", b =>
+            modelBuilder.Entity("Ovile_DAL_Layer.Entities.CategoryId", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -323,11 +323,11 @@ namespace OliveFullStack.PresentationLayer.Migrations
 
             modelBuilder.Entity("Ovile_DAL_Layer.Entities.News", b =>
                 {
-                    b.HasOne("Ovile_DAL_Layer.Entities.Category", "Category")
+                    b.HasOne("Ovile_DAL_Layer.Entities.CategoryId", "CategoryId")
                         .WithMany()
                         .HasForeignKey("CategoryId");
 
-                    b.Navigation("Category");
+                    b.Navigation("CategoryId");
                 });
 #pragma warning restore 612, 618
         }

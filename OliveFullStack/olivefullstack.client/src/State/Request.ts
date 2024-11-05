@@ -1,4 +1,4 @@
-import axios from "axios";
+п»їimport axios from "axios";
 import { News } from "./NewsContext";
 import { jwtDecode } from "jwt-decode";
 import Swal from 'sweetalert2'; // Add SweetAlert for animated dialogs
@@ -7,15 +7,14 @@ import Swal from 'sweetalert2'; // Add SweetAlert for animated dialogs
 const HOST = "https://localhost:7142/";
 
 // geting list news
-//отримання всіх новин
+//РѕС‚СЂРёРјР°РЅРЅСЏ РІСЃС–С… РЅРѕРІРёРЅ
 export async function getAllNews() {
     try {
         const response = await axios.get<News[]>(`${HOST}PresentationNews`);
-        // Логируем ответ
-        console.log("response", response.data);
-        // Записываем данные в массив
+        
+        // Р—Р°РїРёСЃС‹РІР°РµРј РґР°РЅРЅС‹Рµ РІ РјР°СЃСЃРёРІ
         if (response && response.data) {
-            // Предполагается, что response.data содержит массив новостей
+            // РџСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ, С‡С‚Рѕ response.data СЃРѕРґРµСЂР¶РёС‚ РјР°СЃСЃРёРІ РЅРѕРІРѕСЃС‚РµР№
             return (response.data);
         }
 
@@ -25,7 +24,7 @@ export async function getAllNews() {
     return [];
 }
 
-//получение всех категорий
+//РїРѕР»СѓС‡РµРЅРёРµ РІСЃРµС… РєР°С‚РµРіРѕСЂРёР№
 export async function getAllCategory() {
     try {
         const response = await axios.get(`${HOST}PresentationCategory`);
@@ -40,14 +39,14 @@ export async function getAllCategory() {
     return [];
 }
 
-//получение новости по id
+//РїРѕР»СѓС‡РµРЅРёРµ РЅРѕРІРѕСЃС‚Рё РїРѕ id
 export async function getNewsById(Id: string) {
     try {
-        // Асинхронный запрос с использованием await
+        // РђСЃРёРЅС…СЂРѕРЅРЅС‹Р№ Р·Р°РїСЂРѕСЃ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј await
         const response = await axios.get(`${HOST}PresentationNews/${Id}`);
 
         if (response && response.data) {
-            // Логируем ответ
+            // Р›РѕРіРёСЂСѓРµРј РѕС‚РІРµС‚
             console.log("getNewsById->response.data", response.data);
             return response.data;
         }
@@ -57,13 +56,13 @@ export async function getNewsById(Id: string) {
     return null;
 }
 
-//функция видалення новин
-// (Витя добавил удаление потому что мне стало скучно :D )
+//С„СѓРЅРєС†РёСЏ РІРёРґР°Р»РµРЅРЅСЏ РЅРѕРІРёРЅ
+// (Р’РёС‚СЏ РґРѕР±Р°РІРёР» СѓРґР°Р»РµРЅРёРµ РїРѕС‚РѕРјСѓ С‡С‚Рѕ РјРЅРµ СЃС‚Р°Р»Рѕ СЃРєСѓС‡РЅРѕ :D )
 export async function deleteListNest(listNewsIdOnDelete: string[]) {
+    //РїСЂРѕРІРµСЂСЏРµРј С‡С‚РѕР±С‹ СЃРїРёСЃРѕРє Р±РёР» РЅРµ РїСѓСЃС‚РѕР№
     if (listNewsIdOnDelete === null || listNewsIdOnDelete.length === 0) return;
-    console.log("Delete button");
-    console.log('listNewsIdOnDelete', listNewsIdOnDelete);
 
+    //РїРѕР»СѓС‡Р°РµРј С‚РѕРєРµРЅ
     const token = localStorage.getItem('token');
 
     try {
@@ -76,22 +75,81 @@ export async function deleteListNest(listNewsIdOnDelete: string[]) {
             data: { ids: listNewsIdOnDelete }
         });
 
-        // Логируем ответ
+        // Р›РѕРіРёСЂСѓРµРј РѕС‚РІРµС‚
         console.log("deleteListNest->response.data", response.data);
+        return true;
     } catch (e) {
         console.error("Error deleting news:", e);
         if (axios.isAxiosError(e)) {
             console.error("Response data:", e.response?.data);
             console.error("Status:", e.response?.status);
         }
+        return false
     }
 }
+
+interface NewNews {
+    Title: string,
+    Description: string,
+    ImgSrc: string,
+    Source: string,
+    CategoryId: string
+}
+//Create News
+export async function createNews(newNewsPayLoad: NewNews) {
+    const token = localStorage.getItem('token');
+
+    try {
+        console.log(newNewsPayLoad);
+        const response = await axios.post(`${HOST}PresentationNews/add`, newNewsPayLoad, {
+            headers: {
+                'Authorization': `Bearer ${token}` // Р”РѕР±Р°РІР»СЏРµРј С‚РѕРєРµРЅ РІ Р·Р°РіРѕР»РѕРІРѕРє
+            }
+        }).then((resp) => {
+            console.log("resp",resp);
+        });
+        return true;
+        console.log("response", response);
+    }
+    catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
+interface UpdateNews {
+    currentNewsId: string
+}
+
+//СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РЅРѕРІРѕСЃС‚Рё
+export async function updateNews(newNewsPayLoad: NewNews, id: UpdateNews) {
+    const token = localStorage.getItem('token');
+
+    try {
+        console.log(newNewsPayLoad);
+        const response = await axios.put(`${HOST}PresentationNews/update/${id.currentNewsId}`, newNewsPayLoad, {
+            headers: {
+                'Authorization': `Bearer ${token}` // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            }
+        }).then((resp) => {
+            console.log("resp", resp);
+        });
+        console.log("response", response);
+        return true;
+        
+    }
+    catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
 interface RegistrPayload  {
     Username: string,
     Email: string,
     Password: string
 }
-//Регистрацыя
+//Р РµРіРёСЃС‚СЂР°С†С‹СЏ
 export async function registr(registrPayload: RegistrPayload) {
     try {
         axios.post(`${HOST}api/Authenticate/register`,  registrPayload  ).then((response) => {
@@ -113,7 +171,7 @@ interface JwtPayload {
   "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"?: string[];
 }
 
-//вход
+//РІС…РѕРґ
 export async function loginAccount(loginPayload: LoginPayload) {
     try {
         const response = await axios.post(`${HOST}api/Authenticate/login`, loginPayload);
