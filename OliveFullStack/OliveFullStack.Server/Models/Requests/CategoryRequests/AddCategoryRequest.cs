@@ -1,7 +1,7 @@
-﻿namespace OliveFullStack.PresentationLayer.Models.Requests.CategoryRequests
+﻿namespace OliveFullStack.Server.Models.Requests.CategoryRequests
 {
     public class AddCategoryRequest
     {
-        public string Name { get; set; }  
+        public string Name { get; set; }
     }
 }

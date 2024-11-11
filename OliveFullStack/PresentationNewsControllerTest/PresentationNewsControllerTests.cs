@@ -1,16 +1,12 @@
 using AutoMapper;
-using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using OliveFullStack.PresentationLayer.Controllers;
-using OliveFullStack.PresentationLayer.Models.Requests;
-using OliveFullStack.PresentationLayer.Models.Requests.NewsRequests;
-using OliveFullStack.PresentationLayer.Models.Responses;
+using OliveFullStack.Server.Controllers;
+using OliveFullStack.Server.Models.Requests.NewsRequests;
+using OliveFullStack.Server.Models.Responses;
 using Ovile_BLL_Layer.DTO;
 using Ovile_BLL_Layer.Infrastructure.Exceptions;
 using Ovile_BLL_Layer.Interfaces;
-using Ovile_BLL_Layer.Services;
-using Ovile_DAL_Layer.Entities;
 
 namespace PresentationNewsController_Testing
 {

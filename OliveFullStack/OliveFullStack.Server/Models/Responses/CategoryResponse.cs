@@ -1,4 +1,4 @@
-﻿namespace OliveFullStack.PresentationLayer.Models.Responses
+﻿namespace OliveFullStack.Server.Models.Responses
 {
     public class CategoryResponse
     {

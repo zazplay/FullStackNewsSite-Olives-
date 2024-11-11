@@ -1,5 +1,4 @@
 ﻿
-
 namespace Ovile_BLL_Layer.BusinessModels
 {
     public class UserBusinessModel

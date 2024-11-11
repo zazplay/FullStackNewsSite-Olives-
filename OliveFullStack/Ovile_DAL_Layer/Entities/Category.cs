@@ -1,5 +1,4 @@
 ﻿
-
 namespace Ovile_DAL_Layer.Entities
 {
     public class Category

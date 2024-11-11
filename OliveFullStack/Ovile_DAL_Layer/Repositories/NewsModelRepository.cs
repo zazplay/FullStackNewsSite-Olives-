@@ -2,10 +2,6 @@
 using Ovile_DAL_Layer.EF;
 using Ovile_DAL_Layer.Entities;
 using Ovile_DAL_Layer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Ovile_DAL_Layer.Repositories
 {

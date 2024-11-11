@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Ovile_DAL_Layer.Entities;
 using Ovile_BLL_Layer.DTO;
-using OliveFullStack.PresentationLayer.Models.Responses;
-using OliveFullStack.PresentationLayer.Models.Requests.NewsRequests;
-using OliveFullStack.PresentationLayer.Models.Requests.CategoryRequests;
+using OliveFullStack.Server.Models.Requests.CategoryRequests;
+using OliveFullStack.Server.Models.Requests.NewsRequests;
+using OliveFullStack.Server.Models.Responses;
 
 public class AutoMaperProfiles : Profile
 {

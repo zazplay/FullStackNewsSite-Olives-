@@ -1,4 +1,4 @@
-﻿namespace OliveFullStack.PresentationLayer.Models.Requests.NewsRequests
+﻿namespace OliveFullStack.Server.Models.Requests.NewsRequests
 {
     public class AddNewsRequest
     {
@@ -6,6 +6,6 @@
         public string Description { get; set; }
         public string ImgSrc { get; set; }
         public string Source { get; set; }
-        public string CategoryId{  get; set; }
+        public string CategoryId { get; set; }
     }
 }

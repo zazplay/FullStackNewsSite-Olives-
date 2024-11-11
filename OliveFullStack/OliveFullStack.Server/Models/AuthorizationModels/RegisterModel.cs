@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OliveFullStack.PresentationLayer.Models.AuthorizationModels
+namespace OliveFullStack.Server.Models.AuthorizationModels
 {
     public class RegisterModel
     {

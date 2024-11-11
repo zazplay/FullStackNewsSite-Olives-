@@ -2,12 +2,10 @@ using Xunit;
 using Moq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using OliveFullStack.PresentationLayer.Controllers;
-using OliveFullStack.PresentationLayer.Models.AuthorizationModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Http;
+using OliveFullStack.Server.Controllers;
+using OliveFullStack.Server.Models.AuthorizationModels;
 
 namespace AuthenticateControllerTests
 {

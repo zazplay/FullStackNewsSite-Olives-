@@ -1,5 +1,4 @@
 ﻿
-
 namespace Ovile_BLL_Layer.DTO
 {
     public class AuthResponseDTO

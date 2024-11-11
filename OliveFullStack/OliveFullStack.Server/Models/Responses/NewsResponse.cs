@@ -1,6 +1,5 @@
-﻿using System;
-
-namespace OliveFullStack.PresentationLayer.Models.Responses
+﻿
+namespace OliveFullStack.Server.Models.Responses
 {
     public class NewsResponse
     {
@@ -11,6 +10,6 @@ namespace OliveFullStack.PresentationLayer.Models.Responses
         public string Source { get; set; }
         public DateTime CreatedAt { get; set; }
         public Guid? CategoryId { get; set; }
-        public string? CategoryName { get; set; } 
+        public string? CategoryName { get; set; }
     }
 }

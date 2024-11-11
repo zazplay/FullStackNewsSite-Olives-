@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Ovile_BLL_Layer.DTO;
 using Ovile_BLL_Layer.Interfaces;
-using OliveFullStack.PresentationLayer.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
-using OliveFullStack.PresentationLayer.Models.Requests.NewsRequests;
 using Microsoft.EntityFrameworkCore;
 using Ovile_DAL_Layer.Entities;
+using OliveFullStack.Server.Models.Requests.NewsRequests;
+using OliveFullStack.Server.Models.Responses;
 
-namespace OliveFullStack.PresentationLayer.Controllers
+namespace OliveFullStack.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -34,7 +34,7 @@ namespace OliveFullStack.PresentationLayer.Controllers
         {
             var news = await _newsService.GetAllNews();
             var newsResponses = _mapper.Map<List<NewsResponse>>(news);
-            
+
             return Ok(newsResponses);
         }
 

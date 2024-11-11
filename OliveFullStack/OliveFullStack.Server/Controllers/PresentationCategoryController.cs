@@ -2,11 +2,11 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Ovile_BLL_Layer.DTO;
 using Ovile_BLL_Layer.Interfaces;
-using OliveFullStack.PresentationLayer.Models.Responses;
-using OliveFullStack.PresentationLayer.Models.Requests.CategoryRequests;
 using Microsoft.AspNetCore.Authorization;
+using OliveFullStack.Server.Models.Requests.CategoryRequests;
+using OliveFullStack.Server.Models.Responses;
 
-namespace OliveFullStack.PresentationLayer.Controllers
+namespace OliveFullStack.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -1,4 +1,4 @@
-namespace OliveFullStack.PresentationLayer.Models.Requests.CategoryRequests
+namespace OliveFullStack.Server.Models.Requests.CategoryRequests
 {
     public class DeleteCategoriesRequest
     {

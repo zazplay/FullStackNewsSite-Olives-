@@ -1,4 +1,4 @@
-﻿namespace OliveFullStack.PresentationLayer.Models.AuthorizationModels
+﻿namespace OliveFullStack.Server.Models.AuthorizationModels
 {
     public static class UserRoles
     {

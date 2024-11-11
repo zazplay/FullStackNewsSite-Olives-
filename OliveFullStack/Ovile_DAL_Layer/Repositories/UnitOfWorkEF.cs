@@ -1,8 +1,6 @@
 ﻿using Ovile_DAL_Layer.EF;
 using Ovile_DAL_Layer.Interfaces;
 using Ovile_DAL_Layer.Entities;
-using System;
-using System.Threading.Tasks;
 
 namespace Ovile_DAL_Layer.Repositories
 {

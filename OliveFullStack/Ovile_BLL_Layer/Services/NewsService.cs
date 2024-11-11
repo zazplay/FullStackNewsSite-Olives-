@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Ovile_BLL_Layer.DTO;
 using Ovile_BLL_Layer.Infrastructure.Exceptions;
 using Ovile_BLL_Layer.Interfaces;
@@ -27,8 +26,6 @@ namespace Notes.BusinessLogicLayer.Services
             var news = await _unitOfWork
                 .News
                 .GetAll();
-
-            
 
             var newsDto = _mapper.Map<List<NewsDTO>>(news);
 
