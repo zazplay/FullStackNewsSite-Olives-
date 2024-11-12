@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Notes.BusinessLogicLayer.Services;
 using Ovile_BLL_Layer.Interfaces;
 using Ovile_BLL_Layer.Services;
 using Ovile_DAL_Layer.EF;

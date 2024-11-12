@@ -5,7 +5,7 @@ using Ovile_BLL_Layer.Interfaces;
 using Ovile_DAL_Layer.Entities;
 using Ovile_DAL_Layer.Interfaces;
 
-namespace Notes.BusinessLogicLayer.Services
+namespace Ovile_BLL_Layer.Services
 {
     public class NewsService : INewsService
     {

@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Ovile_BLL_Layer.DTO;
 using Ovile_BLL_Layer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
-using Ovile_DAL_Layer.Entities;
 using OliveFullStack.Server.Models.Requests.NewsRequests;
 using OliveFullStack.Server.Models.Responses;
 
